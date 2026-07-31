@@ -1,0 +1,13 @@
+# Necesario para que React Router funcione en hosting compartido (cPanel/Apache).
+# Sin esto, recargar /blog o /normativa directamente da 404.
+
+RewriteEngine On
+
+# Si el archivo o carpeta solicitado existe físicamente, servirlo tal cual
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# En cualquier otro caso, redirigir a index.html para que React Router
+# resuelva la ruta en el navegador
+RewriteRule ^ index.html [L]

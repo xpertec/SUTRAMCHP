@@ -58,11 +58,17 @@ export async function obtenerNormativaPorSlug(slug: string): Promise<Normativa |
 export function getPdfUrl(archivoPdf: any): string | null {
   if (!archivoPdf?.asset?._ref) return null
 
-  // Extraer el ID del archivo de la referencia
-  const fileId = archivoPdf.asset._ref.split('-')[1]
+  const ref = archivoPdf.asset._ref
+  const parts = ref.split('-')
+  if (parts.length >= 3) {
+    const fileId = parts.slice(1, -1).join('-')
+    const extension = parts[parts.length - 1]
+    const projectId = import.meta.env.VITE_SANITY_PROJECT_ID || 't7kvp1j8'
+    const dataset = import.meta.env.VITE_SANITY_DATASET || 'production'
+    return `https://cdn.sanity.io/files/${projectId}/${dataset}/${fileId}.${extension}`
+  }
 
-  // Construir la URL de descarga de Sanity
-  return `https://cdn.sanity.io/files/${import.meta.env.VITE_SANITY_PROJECT_ID}/production/${fileId}.pdf`
+  return null
 }
 
 // Función para obtener el nombre del archivo

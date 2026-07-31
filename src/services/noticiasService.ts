@@ -76,7 +76,13 @@ export function contenidoToHtml(contenido: any[]): string {
           style === 'h3' ? 'h4' :
             style === 'blockquote' ? 'blockquote' : 'p'
 
-      const text = block.children?.map((child: any) => child.text).join('') || ''
+      const text = block.children?.map((child: any) => {
+        let textContent = child.text || ''
+        if (child.marks?.includes('strong')) textContent = `<strong>${textContent}</strong>`
+        if (child.marks?.includes('em')) textContent = `<em>${textContent}</em>`
+        return textContent
+      }).join('') || ''
+
       return `<${tag}>${text}</${tag}>`
     }
     return ''

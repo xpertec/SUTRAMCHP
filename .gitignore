@@ -39,7 +39,4 @@ build/
 # Test coverage
 coverage/
 .nyc_output/
-<<<<<<< HEAD
 .env
-=======
->>>>>>> 48845d0bb9ecf0033fff247ce66a805e34e62525

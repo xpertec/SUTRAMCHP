@@ -101,13 +101,13 @@
   }
 
   .section-padding {
-    padding-top: clamp(80px, 10vh, 120px);
-    padding-bottom: clamp(80px, 10vh, 120px);
+    padding-top: clamp(48px, 8vh, 100px);
+    padding-bottom: clamp(48px, 8vh, 100px);
   }
 
   .container-padding {
-    padding-left: clamp(1rem, 5vw, 6rem);
-    padding-right: clamp(1rem, 5vw, 6rem);
+    padding-left: clamp(1rem, 4vw, 5rem);
+    padding-right: clamp(1rem, 4vw, 5rem);
   }
 
   .link-underline {
@@ -132,6 +132,14 @@
 }
 
 @layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .animate-fade-in {
     animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }

@@ -1,13 +1,35 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, Calendar } from "lucide-react";
+import { Search, Calendar, Home, ChevronRight } from "lucide-react";
 import { obtenerNoticias, getImagenUrl } from "@/services/noticiasService";
 import type { Noticia } from "@/types/noticia";
+import { useSeo } from "@/hooks/useSeo";
+
 
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState("");
   const [noticias, setNoticias] = useState<Noticia[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  useSeo({
+    title: "Noticias Sindicales",
+    description:
+      "Noticias, análisis y recursos del Sindicato SUTRAMCHP: negociación colectiva, derechos laborales, seguridad minera y novedades de los trabajadores de Chinalco Perú.",
+    canonical: "https://sutramchperu.com/blog",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      name: "Blog Sindical SUTRAMCHP",
+      description:
+        "Noticias y análisis sobre derechos laborales, negociación colectiva y vida sindical de los trabajadores mineros de Chinalco Perú.",
+      url: "https://sutramchperu.com/blog",
+      publisher: {
+        "@type": "Organization",
+        name: "SUTRAMCHP",
+        url: "https://sutramchperu.com",
+      },
+    },
+  });
 
   useEffect(() => {
     obtenerNoticias()
@@ -26,15 +48,23 @@ export default function Blog() {
       {/* Header */}
       <div
         className="relative flex items-center justify-center"
-        style={{ backgroundColor: "var(--color-primary)", minHeight: "40vh" }}
+        style={{ backgroundColor: "var(--color-primary)", minHeight: "32vh" }}
       >
-        <div className="container-padding mx-auto text-center py-20">
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+        <div className="container-padding mx-auto text-center py-12 md:py-16">
+          {/* Breadcrumb */}
+          <nav aria-label="Ruta de navegación" className="flex items-center justify-center gap-1.5 text-xs text-white/60 mb-4">
+            <Link to="/" className="hover:text-white transition-colors flex items-center gap-1">
+              <Home size={12} /> Inicio
+            </Link>
+            <ChevronRight size={12} />
+            <span className="text-white/90">Blog</span>
+          </nav>
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
             Blog Sindical
           </h1>
           <p
-            className="text-base md:text-lg max-w-2xl mx-auto"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto"
+            style={{ color: "rgba(255,255,255,0.75)" }}
           >
             Noticias, análisis y recursos para nuestros agremiados
           </p>
@@ -42,13 +72,13 @@ export default function Blog() {
       </div>
 
       {/* Content */}
-      <div className="container-padding mx-auto py-12 md:py-16">
-        <div className="flex flex-col lg:flex-row gap-10">
+      <div className="container-padding mx-auto py-8 md:py-16">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
           {/* Sidebar */}
-          <aside className="lg:w-1/4 space-y-8">
-            <div className="bg-white rounded-lg p-5 card-shadow">
+          <aside className="lg:w-1/4">
+            <div className="bg-white rounded-xl p-4 sm:p-5 card-shadow">
               <h3
-                className="font-heading font-semibold text-lg mb-3"
+                className="font-heading font-semibold text-base sm:text-lg mb-2.5"
                 style={{ color: "var(--color-text-primary)" }}
               >
                 Buscar
@@ -64,7 +94,7 @@ export default function Blog() {
                   placeholder="Buscar artículos..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-md border text-sm focus:outline-none focus:border-[var(--color-primary)]"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border text-sm focus:outline-none focus:border-[var(--color-primary)]"
                   style={{ borderColor: "var(--color-surface-alt)" }}
                 />
               </div>

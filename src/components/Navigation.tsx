@@ -106,8 +106,8 @@ export default function Navigation() {
         <nav className="container-padding mx-auto flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link to="/" className="relative z-30 shrink-0 -mb-[47px] md:-mb-[73px] block">
-            <div className="bg-white rounded-full p-1.5 shadow-lg border-4 border-white w-[104px] h-[104px] md:w-[146px] md:h-[146px] flex items-center justify-center -mt-[26px] md:-mt-[47px] transition-transform duration-300 hover:scale-105">
+          <Link to="/" className="relative z-30 shrink-0 -mb-[32px] sm:-mb-[47px] md:-mb-[73px] block">
+            <div className="bg-white rounded-full p-1 sm:p-1.5 shadow-lg border-2 sm:border-4 border-white w-[76px] h-[76px] sm:w-[104px] sm:h-[104px] md:w-[146px] md:h-[146px] flex items-center justify-center -mt-[14px] sm:-mt-[26px] md:-mt-[47px] transition-transform duration-300 hover:scale-105">
               <img
                 src="/images/logo.jpeg"
                 alt="SUTRAMCHP"
@@ -152,7 +152,7 @@ export default function Navigation() {
 
           {/* Mobile hamburger */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2.5 rounded-lg hover:bg-gray-100 transition-colors"
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             aria-label="Menú"
           >
@@ -182,27 +182,37 @@ export default function Navigation() {
       {/* ── Mobile menu overlay ── */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8"
+          className="fixed inset-0 z-40 flex flex-col items-center justify-start pt-16 pb-10 px-6 overflow-y-auto gap-6 sm:gap-8 animate-fade-in"
           style={{ backgroundColor: "var(--color-primary)" }}
         >
           <button
-            className="absolute top-4 right-4 p-2 text-white"
+            className="absolute top-4 right-4 p-3 text-white rounded-full hover:bg-white/10 transition-colors"
             onClick={() => setIsMobileOpen(false)}
             aria-label="Cerrar menú"
           >
             <X size={28} />
           </button>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className="text-white text-2xl font-heading font-semibold tracking-wide transition-colors hover:text-[var(--color-accent)]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          <div className="w-16 h-16 rounded-full bg-white p-1 my-2 shadow-md shrink-0">
+            <img src="/images/logo.jpeg" alt="Logo" className="w-full h-full object-contain rounded-full" />
+          </div>
+          <div className="flex flex-col items-center gap-4 w-full max-w-xs my-auto">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`w-full text-center py-2.5 text-xl sm:text-2xl font-heading font-semibold tracking-wide transition-colors ${
+                  location.pathname === link.href
+                    ? "text-[var(--color-accent)] font-bold"
+                    : "text-white hover:text-[var(--color-accent)]"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
+
     </>
   );
 }

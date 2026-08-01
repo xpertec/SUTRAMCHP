@@ -1,4 +1,6 @@
 import { Mail, Phone } from "lucide-react";
+import { useSeo } from "@/hooks/useSeo";
+
 
 interface Miembro {
   cargo: string;
@@ -128,19 +130,19 @@ function iniciales(nombre: string) {
 function MiembroCard({ miembro }: { miembro: Miembro }) {
   return (
     <div
-      className="p-6 rounded-2xl flex flex-col h-full transition-transform duration-300 hover:-translate-y-1"
+      className="p-5 sm:p-6 rounded-2xl flex flex-col h-full card-shadow hover:card-shadow-hover transition-all duration-300"
       style={{ backgroundColor: "var(--color-surface)" }}
     >
-      <div className="flex items-start gap-4 mb-4">
+      <div className="flex items-start gap-3.5 sm:gap-4 mb-4">
         <div
-          className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 text-white font-heading text-lg font-bold"
+          className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shrink-0 text-white font-heading text-base sm:text-lg font-bold shadow-sm"
           style={{ backgroundColor: "var(--color-primary)" }}
         >
           {iniciales(miembro.nombre)}
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           <p
-            className="text-[11px] font-semibold tracking-[0.06em] uppercase mb-1"
+            className="text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase mb-1 leading-tight"
             style={{ color: "var(--color-secondary)" }}
           >
             {miembro.cargo}
@@ -154,21 +156,21 @@ function MiembroCard({ miembro }: { miembro: Miembro }) {
         </div>
       </div>
 
-      <div className="mt-auto space-y-2.5 pt-3 border-t" style={{ borderColor: "var(--color-surface-alt)" }}>
+      <div className="mt-auto space-y-2 pt-3 border-t" style={{ borderColor: "var(--color-surface-alt)" }}>
         {miembro.correos.map((correo) => (
           <a
             key={correo}
             href={`mailto:${correo}`}
-            className="flex items-center gap-2.5 text-sm break-all transition-colors hover:text-[var(--color-secondary)]"
+            className="flex items-center gap-2 text-xs sm:text-sm break-all transition-colors hover:text-[var(--color-secondary)] py-0.5"
             style={{ color: "var(--color-text-secondary)" }}
           >
             <Mail size={15} className="shrink-0" />
-            {correo}
+            <span className="truncate">{correo}</span>
           </a>
         ))}
         <a
           href={`tel:+51${miembro.telefono.replace(/\s+/g, "")}`}
-          className="flex items-center gap-2.5 text-sm transition-colors hover:text-[var(--color-secondary)]"
+          className="flex items-center gap-2 text-xs sm:text-sm transition-colors hover:text-[var(--color-secondary)] py-0.5"
           style={{ color: "var(--color-text-secondary)" }}
         >
           <Phone size={15} className="shrink-0" />
@@ -180,26 +182,48 @@ function MiembroCard({ miembro }: { miembro: Miembro }) {
 }
 
 export default function Directiva() {
+  const personSchema = directiva.map((m) => ({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: m.nombre,
+    jobTitle: m.cargo,
+    email: m.correos[0],
+    telephone: `+51${m.telefono.replace(/\s+/g, "")}`,
+    worksFor: {
+      "@type": "Organization",
+      name: "SUTRAMCHP",
+      url: "https://sutramchperu.com",
+    },
+  }));
+
+  useSeo({
+    title: "Nuestra Directiva",
+    description:
+      "Conoce a los dirigentes del Sindicato Unificado de Trabajadores de Minera Chinalco Perú (SUTRAMCHP): Secretario General, Secretarios de Área y toda la estructura sindical 2024-2026.",
+    canonical: "https://sutramchperu.com/directiva",
+    schema: personSchema,
+  });
+
   return (
     <div style={{ backgroundColor: "var(--color-background)" }}>
       {/* Hero */}
       <div
         className="relative flex items-center justify-center"
-        style={{ backgroundColor: "var(--color-primary)", minHeight: "40vh" }}
+        style={{ backgroundColor: "var(--color-primary)", minHeight: "32vh" }}
       >
-        <div className="container-padding mx-auto text-center py-16">
+        <div className="container-padding mx-auto text-center py-12 md:py-16">
           <p
-            className="text-xs font-medium tracking-[0.08em] uppercase mb-3"
+            className="text-xs font-medium tracking-wider uppercase mb-2 sm:mb-3"
             style={{ color: "var(--color-accent)" }}
           >
             SUTRAMCHP
           </p>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
             Nuestra Directiva
           </h1>
           <p
-            className="text-base md:text-lg max-w-2xl mx-auto"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto"
+            style={{ color: "rgba(255,255,255,0.75)" }}
           >
             Conoce a los dirigentes que representan y defienden los derechos de los
             trabajadores mineros de Chinalco Perú
@@ -210,7 +234,7 @@ export default function Directiva() {
       {/* Grid de miembros */}
       <section className="section-padding">
         <div className="container-padding mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {directiva.map((miembro, index) => (
               <MiembroCard key={`${miembro.nombre}-${index}`} miembro={miembro} />
             ))}

@@ -8,12 +8,59 @@ import {
   Twitter,
   MessageCircle,
 } from "lucide-react";
+import { useSeo } from "@/hooks/useSeo";
+
 
 export default function Contacto() {
+  useSeo({
+    title: "Contacto",
+    description:
+      "Contáctate con SUTRAMCHP: oficina en Av. Minera 1234, Morococha, Junín. Teléfono +51 914 130 326 | Email: secretaria_sindicato@sutramchp.pe. Atención: lunes–viernes 8:00 am–5:00 pm.",
+    canonical: "https://sutramchperu.com/contacto",
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "SUTRAMCHP",
+      description:
+        "Sindicato Unificado de Trabajadores de Minera Chinalco Perú",
+      url: "https://sutramchperu.com",
+      telephone: "+51-914-130-326",
+      email: "secretaria_sindicato@sutramchp.pe",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Av. Minera 1234",
+        addressLocality: "Morococha",
+        addressRegion: "Junín",
+        postalCode: "12454",
+        addressCountry: "PE",
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "17:00",
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Saturday"],
+          opens: "08:00",
+          closes: "12:00",
+        },
+      ],
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -11.72693745,
+        longitude: -76.1424922,
+      },
+      sameAs: ["https://www.facebook.com/SUTRAMCHP"],
+    },
+  });
+
   return (
     <div style={{ backgroundColor: "var(--color-background)" }}>
       {/* Map Embed */}
-      <div className="w-full h-[300px] md:h-[400px] relative">
+      <div className="w-full h-[250px] sm:h-[350px] md:h-[420px] relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15623.803455407803!2d-76.1424922!3d-11.72693745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9106df37c11f6465%3A0xef40d229dd8dd9!2sMorococha%2C%20Jun%C3%ADn!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe"
           width="100%"
@@ -27,28 +74,28 @@ export default function Contacto() {
       </div>
 
       {/* Content */}
-      <div className="container-padding mx-auto py-12 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      <div className="container-padding mx-auto py-8 md:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Form */}
           <div>
             <p
-              className="text-xs font-medium tracking-[0.08em] uppercase mb-3"
+              className="text-xs font-medium tracking-[0.08em] uppercase mb-2 sm:mb-3"
               style={{ color: "var(--color-secondary)" }}
             >
               CONTÁCTANOS
             </p>
             <h2
-              className="font-heading text-3xl md:text-4xl font-bold mb-8"
+              className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8"
               style={{ color: "var(--color-text-primary)" }}
             >
               Envíanos un mensaje
             </h2>
 
-            <form className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <form className="space-y-4 sm:space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label
-                    className="block text-sm font-medium mb-1.5"
+                    className="block text-xs sm:text-sm font-medium mb-1.5"
                     style={{ color: "var(--color-text-primary)" }}
                   >
                     Nombre completo
@@ -56,13 +103,13 @@ export default function Contacto() {
                   <input
                     type="text"
                     placeholder="Tu nombre"
-                    className="w-full px-4 py-3.5 rounded-md border bg-white text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{ borderColor: "var(--color-surface-alt)" }}
                   />
                 </div>
                 <div>
                   <label
-                    className="block text-sm font-medium mb-1.5"
+                    className="block text-xs sm:text-sm font-medium mb-1.5"
                     style={{ color: "var(--color-text-primary)" }}
                   >
                     Correo electrónico
@@ -70,16 +117,16 @@ export default function Contacto() {
                   <input
                     type="email"
                     placeholder="tu@email.com"
-                    className="w-full px-4 py-3.5 rounded-md border bg-white text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{ borderColor: "var(--color-surface-alt)" }}
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label
-                    className="block text-sm font-medium mb-1.5"
+                    className="block text-xs sm:text-sm font-medium mb-1.5"
                     style={{ color: "var(--color-text-primary)" }}
                   >
                     Teléfono
@@ -87,19 +134,19 @@ export default function Contacto() {
                   <input
                     type="tel"
                     placeholder="+51 914 130 326"
-                    className="w-full px-4 py-3.5 rounded-md border bg-white text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{ borderColor: "var(--color-surface-alt)" }}
                   />
                 </div>
                 <div>
                   <label
-                    className="block text-sm font-medium mb-1.5"
+                    className="block text-xs sm:text-sm font-medium mb-1.5"
                     style={{ color: "var(--color-text-primary)" }}
                   >
                     Asunto
                   </label>
                   <select
-                    className="w-full px-4 py-3.5 rounded-md border bg-white text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                    className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{
                       borderColor: "var(--color-surface-alt)",
                       color: "var(--color-text-secondary)",
@@ -116,22 +163,22 @@ export default function Contacto() {
 
               <div>
                 <label
-                  className="block text-sm font-medium mb-1.5"
+                  className="block text-xs sm:text-sm font-medium mb-1.5"
                   style={{ color: "var(--color-text-primary)" }}
                 >
                   Mensaje
                 </label>
                 <textarea
                   placeholder="Escribe tu mensaje..."
-                  rows={6}
-                  className="w-full px-4 py-3.5 rounded-md border bg-white text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors resize-none"
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors resize-none"
                   style={{ borderColor: "var(--color-surface-alt)" }}
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-full text-white text-sm font-semibold hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                className="w-full py-3.5 sm:py-4 rounded-full text-white text-sm font-semibold hover:scale-[1.01] transition-all flex items-center justify-center gap-2 shadow-md"
                 style={{ backgroundColor: "var(--color-secondary)" }}
               >
                 <Send size={16} />

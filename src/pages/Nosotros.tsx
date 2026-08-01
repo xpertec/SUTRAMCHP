@@ -1,6 +1,36 @@
 import { useRef, useEffect } from "react";
 import { Target, Eye, Heart, Shield, Users, Award } from "lucide-react";
 import gsap from "gsap";
+import { useSeo } from "@/hooks/useSeo";
+
+const NOSOTROS_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "Historia y valores de SUTRAMCHP",
+  description:
+    "SUTRAMCHP fue fundado en 2003 por trabajadores mineros de Chinalco Perú para defender los derechos laborales. Con más de 22 años de trayectoria, representa a 2,500 agremiados en la mina Toromocho, Morococha, Junín.",
+  url: "https://sutramchperu.com/nosotros",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "SUTRAMCHP",
+    url: "https://sutramchperu.com",
+  },
+  about: {
+    "@type": "Organization",
+    name: "SUTRAMCHP",
+    foundingDate: "2003",
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      value: 2500,
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Morococha",
+      addressRegion: "Junín",
+      addressCountry: "PE",
+    },
+  },
+};
 
 const timeline = [
   {
@@ -71,6 +101,14 @@ const values = [
 export default function Nosotros() {
   const timelineRef = useRef<HTMLDivElement>(null);
 
+  useSeo({
+    title: "Nuestra Historia",
+    description:
+      "Conoce la historia de SUTRAMCHP: más de 22 años defendiendo los derechos laborales de los trabajadores de Minera Chinalco Perú. Misión, visión, valores y trayectoria sindical desde 2003.",
+    canonical: "https://sutramchperu.com/nosotros",
+    schema: NOSOTROS_SCHEMA,
+  });
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from(".timeline-item", {
@@ -90,15 +128,15 @@ export default function Nosotros() {
       {/* Hero */}
       <div
         className="relative flex items-center justify-center"
-        style={{ backgroundColor: "var(--color-primary)", minHeight: "50vh" }}
+        style={{ backgroundColor: "var(--color-primary)", minHeight: "32vh" }}
       >
-        <div className="container-padding mx-auto text-center py-20">
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+        <div className="container-padding mx-auto text-center py-12 md:py-16">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
             Nuestra Historia
           </h1>
           <p
-            className="text-base md:text-lg max-w-2xl mx-auto"
-            style={{ color: "rgba(255,255,255,0.7)" }}
+            className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto"
+            style={{ color: "rgba(255,255,255,0.75)" }}
           >
             Más de dos décadas de lucha y conquistas laborales
           </p>
@@ -108,9 +146,9 @@ export default function Nosotros() {
       {/* Mission & Vision */}
       <section className="section-padding">
         <div className="container-padding mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12">
             <div
-              className="p-8 md:p-10 rounded-2xl"
+              className="p-6 sm:p-8 md:p-10 rounded-2xl card-shadow"
               style={{ backgroundColor: "var(--color-surface)" }}
             >
               <div

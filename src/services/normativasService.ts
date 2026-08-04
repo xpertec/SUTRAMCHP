@@ -1,5 +1,5 @@
 // src/services/normativasService.ts
-import { client } from '../lib/sanityClient'
+import { client, urlFor } from '../lib/sanityClient'
 import type { Normativa } from '../types/normativa'
 
 // Consulta GROQ para obtener todas las normativas publicadas
@@ -12,6 +12,7 @@ const normativasQuery = `
     slug,
     fecha,
     descripcion,
+    imagen,
     archivoPdf,
     categoria,
     publicado
@@ -28,6 +29,7 @@ const normativaPorSlugQuery = `
     slug,
     fecha,
     descripcion,
+    imagen,
     archivoPdf,
     categoria,
     publicado
@@ -52,6 +54,18 @@ export async function obtenerNormativaPorSlug(slug: string): Promise<Normativa |
     console.error('Error al obtener normativa de Sanity:', error)
     return null
   }
+}
+
+// Función helper para obtener URL de imagen optimizada (miniatura de tarjeta)
+export function getImagenUrl(imagen: any, width: number = 400, height?: number) {
+  if (!imagen?.asset?._ref) return null
+
+  let imageBuilder = urlFor(imagen).width(width)
+  if (height) {
+    imageBuilder = imageBuilder.height(height)
+  }
+
+  return imageBuilder.quality(80).fit('crop').url()
 }
 
 // Función helper para obtener URL del PDF

@@ -7,7 +7,11 @@ import {
   Download,
   Search,
 } from "lucide-react";
-import { obtenerNormativas, getPdfUrl } from "@/services/normativasService";
+import {
+  obtenerNormativas,
+  getPdfUrl,
+  getImagenUrl,
+} from "@/services/normativasService";
 import type { Normativa as NormativaType } from "@/types/normativa";
 import { useSeo } from "@/hooks/useSeo";
 
@@ -94,7 +98,40 @@ export default function Normativa() {
       </div>
 
       {/* Content */}
-      <div className="container-padding mx-auto pt-10 pb-12 md:pt-12 md:pb-14">
+      <div className="container-padding mx-auto pt-10 pb-12 md:pt-14 md:pb-16">
+        {/* Section header: barra de acento + título + contador (estilo "Normas") */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+          <div
+            className="flex items-start gap-4 pl-4 border-l-4"
+            style={{ borderColor: "var(--color-primary)" }}
+          >
+            <div>
+              <h2
+                className="font-heading text-2xl sm:text-3xl font-bold"
+                style={{ color: "var(--color-text-primary)" }}
+              >
+                Normas
+              </h2>
+              <p
+                className="text-sm mt-1"
+                style={{ color: "var(--color-text-secondary)" }}
+              >
+                Leyes, reglamentos y resoluciones que amparan a los
+                trabajadores mineros
+              </p>
+            </div>
+          </div>
+          {!isLoading && (
+            <span
+              className="text-sm font-semibold shrink-0"
+              style={{ color: "var(--color-primary)" }}
+            >
+              {documents.length}{" "}
+              {documents.length === 1 ? "documento" : "documentos"}
+            </span>
+          )}
+        </div>
+
         {/* Search & Filters */}
         <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-4 mb-8">
           <div className="relative flex-1">
@@ -136,29 +173,30 @@ export default function Normativa() {
           </div>
         </div>
 
-        {/* Documents List */}
-        <div className="space-y-4">
+        {/* Documents Grid — tarjeta con miniatura, fecha destacada y título */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           {isLoading ? (
             [...Array(4)].map((_, i) => (
               <div
                 key={i}
-                className="flex items-start gap-4 p-4 sm:p-6 rounded-xl bg-white card-shadow animate-pulse"
+                className="flex items-start gap-4 p-4 sm:p-5 rounded-xl border bg-white animate-pulse"
+                style={{ borderColor: "var(--color-surface-alt)" }}
               >
                 <div
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg shrink-0"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg shrink-0"
                   style={{ backgroundColor: "var(--color-surface-alt)" }}
                 />
-                <div className="flex-1 min-w-0 space-y-2">
-                  <div
-                    className="h-4 w-2/3 rounded"
-                    style={{ backgroundColor: "var(--color-surface-alt)" }}
-                  />
-                  <div
-                    className="h-3 w-full rounded"
-                    style={{ backgroundColor: "var(--color-surface-alt)" }}
-                  />
+                <div className="flex-1 min-w-0 space-y-2 pt-1">
                   <div
                     className="h-3 w-1/3 rounded"
+                    style={{ backgroundColor: "var(--color-surface-alt)" }}
+                  />
+                  <div
+                    className="h-4 w-full rounded"
+                    style={{ backgroundColor: "var(--color-surface-alt)" }}
+                  />
+                  <div
+                    className="h-4 w-2/3 rounded"
                     style={{ backgroundColor: "var(--color-surface-alt)" }}
                   />
                 </div>
@@ -167,100 +205,90 @@ export default function Normativa() {
           ) : documents.length ? (
             documents.map((doc) => {
               const pdfUrl = getPdfUrl(doc.archivoPdf);
+              const imagenUrl = getImagenUrl(doc.imagen, 200, 200);
               return (
-                <div
+                <a
                   key={doc._id}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 sm:p-6 rounded-xl bg-white card-shadow hover:shadow-md transition-all"
+                  href={pdfUrl ?? undefined}
+                  target={pdfUrl ? "_blank" : undefined}
+                  rel={pdfUrl ? "noreferrer" : undefined}
+                  aria-disabled={!pdfUrl}
+                  className={`group flex items-start gap-4 p-4 sm:p-5 rounded-xl border bg-white transition-all hover:shadow-md ${
+                    pdfUrl ? "cursor-pointer" : "cursor-default"
+                  }`}
+                  style={{ borderColor: "var(--color-surface-alt)" }}
+                  onClick={(e) => {
+                    if (!pdfUrl) e.preventDefault();
+                  }}
                 >
-                  <div className="flex items-center gap-3.5 w-full sm:w-auto">
-                    <div
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center shrink-0"
-                      style={{
-                        backgroundColor: "var(--color-primary)",
-                        color: "white",
-                      }}
-                    >
-                      {(doc.categoria && CATEGORY_ICONS[doc.categoria]) ?? (
-                        <FileText size={22} />
-                      )}
-                    </div>
-                    <div className="sm:hidden flex-1 min-w-0">
-                      <h3
-                        className="font-heading text-base font-semibold leading-snug"
-                        style={{ color: "var(--color-text-primary)" }}
-                      >
-                        {doc.titulo}
-                      </h3>
-                    </div>
+                  {/* Miniatura */}
+                  <div
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden shrink-0 flex items-center justify-center"
+                    style={{ backgroundColor: "var(--color-primary)" }}
+                  >
+                    {imagenUrl ? (
+                      <img
+                        src={imagenUrl}
+                        alt={doc.titulo}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-white">
+                        {(doc.categoria && CATEGORY_ICONS[doc.categoria]) ?? (
+                          <FileText size={26} />
+                        )}
+                      </span>
+                    )}
                   </div>
 
-                  <div className="flex-1 min-w-0 w-full">
+                  {/* Fecha + título */}
+                  <div className="flex-1 min-w-0 pt-0.5">
+                    {doc.fecha && (
+                      <p
+                        className="text-xs sm:text-sm font-bold mb-1"
+                        style={{ color: "var(--color-primary)" }}
+                      >
+                        {new Date(doc.fecha).toLocaleDateString("es-PE", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    )}
                     <h3
-                      className="hidden sm:block font-heading text-base sm:text-lg font-semibold mb-1.5"
+                      className="font-heading text-sm sm:text-base font-bold uppercase leading-snug transition-colors group-hover:text-[var(--color-primary)]"
                       style={{ color: "var(--color-text-primary)" }}
                     >
                       {doc.titulo}
                     </h3>
-                    <p
-                      className="text-xs sm:text-sm leading-relaxed mb-2.5"
-                      style={{ color: "var(--color-text-secondary)" }}
-                    >
-                      {doc.descripcion}
-                    </p>
-                    <div
-                      className="flex items-center gap-3 text-xs"
-                      style={{ color: "var(--color-text-muted)" }}
-                    >
-                      {doc.fecha && (
-                        <span>
-                          {new Date(doc.fecha).toLocaleDateString("es-PE", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </span>
-                      )}
+                    <div className="flex items-center gap-2 mt-2">
                       {doc.categoria && (
                         <span
                           className="px-2.5 py-0.5 rounded-full text-[10px] font-medium uppercase"
-                          style={{
-                            backgroundColor: "var(--color-surface-alt)",
-                          }}
+                          style={{ backgroundColor: "var(--color-surface-alt)" }}
                         >
                           {doc.categoria}
                         </span>
                       )}
+                      {pdfUrl ? (
+                        <span
+                          className="inline-flex items-center gap-1 text-xs font-medium"
+                          style={{ color: "var(--color-secondary)" }}
+                        >
+                          <Download size={13} /> Descargar
+                        </span>
+                      ) : (
+                        <span className="text-xs opacity-40" style={{ color: "var(--color-text-muted)" }}>
+                          No disponible
+                        </span>
+                      )}
                     </div>
                   </div>
-
-                  <div className="self-end sm:self-center shrink-0 pt-2 sm:pt-0">
-                    {pdfUrl ? (
-                      <a
-                        href={pdfUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 sm:p-2.5 rounded-full sm:rounded-full bg-[var(--color-secondary)] text-white text-xs sm:text-sm font-medium transition-all hover:scale-105"
-                        title="Descargar PDF"
-                      >
-                        <Download size={16} />
-                        <span className="sm:hidden">Descargar PDF</span>
-                      </a>
-                    ) : (
-                      <button
-                        disabled
-                        className="inline-flex items-center gap-2 px-4 py-2 sm:p-2.5 rounded-full bg-[var(--color-secondary)] text-white opacity-40 cursor-not-allowed text-xs sm:text-sm"
-                        title="Sin archivo disponible"
-                      >
-                        <Download size={16} />
-                        <span className="sm:hidden">No disponible</span>
-                      </button>
-                    )}
-                  </div>
-                </div>
+                </a>
               );
             })
           ) : (
-            <div className="text-center py-10">
+            <div className="col-span-full text-center py-10">
               <p
                 className="text-lg"
                 style={{ color: "var(--color-text-secondary)" }}

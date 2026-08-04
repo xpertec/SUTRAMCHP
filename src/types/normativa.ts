@@ -9,6 +9,12 @@ export interface Normativa {
   }
   fecha: string
   descripcion: string
+  imagen?: {
+    asset?: {
+      _ref: string
+      _type: string
+    }
+  }
   archivoPdf: {
     asset?: {
       _ref: string

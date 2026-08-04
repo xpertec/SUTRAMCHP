@@ -36,6 +36,14 @@ export default {
       rows: 3,
     },
     {
+      name: 'imagen',
+      title: 'Imagen de portada (miniatura de la tarjeta)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'categoria',
       title: 'Categoría de la Normativa',
       type: 'string',

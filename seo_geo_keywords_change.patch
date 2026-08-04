@@ -1,0 +1,457 @@
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index 00b20fb..31412a5 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -34,9 +34,10 @@ export default function Footer() {
+               </span>
+             </div>
+             <p className="text-white/60 text-sm leading-relaxed mb-4">
+-              Sindicato de Trabajadores Mineros de Chinalco Perú. Defendiendo los
+-              derechos laborales y construyendo un futuro mejor para nuestros
+-              agremiados desde 2003.
++              Sindicato de Trabajadores Mineros de Chinalco Perú (SUTRAMCHPERU).
++              Defendiendo los derechos laborales del sindicato minero de Chinalco
++              y construyendo un futuro mejor para nuestros agremiados desde el 17
++              de diciembre de 2014.
+             </p>
+           </div>
+ 
+diff --git a/src/hooks/useSeo.ts b/src/hooks/useSeo.ts
+index 23df393..75915be 100644
+--- a/src/hooks/useSeo.ts
++++ b/src/hooks/useSeo.ts
+@@ -16,7 +16,7 @@ const SITE_NAME = "SUTRAMCHP";
+ const SITE_URL = "https://sutramchperu.com";
+ const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
+ const DEFAULT_DESCRIPTION =
+-  "SUTRAMCHP es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado en 2003 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
++  "SUTRAMCHP (Sindicato Unificado de Trabajadores de Minera Chinalco Perú) es el sindicato minero de Chinalco Perú, fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
+ 
+ export interface SeoProps {
+   /** Título de la página (sin el nombre del sitio). Ej: "Nuestra Historia" */
+@@ -31,6 +31,8 @@ export interface SeoProps {
+   ogType?: "website" | "article";
+   /** JSON-LD structured data object(s) para Schema.org */
+   schema?: object | object[];
++  /** Palabras clave SEO, separadas por coma. Ej: "sindicato chinalco, SUTRAMCH" */
++  keywords?: string;
+   /** Si true, noindex para bots */
+   noIndex?: boolean;
+ }
+@@ -77,6 +79,7 @@ export function useSeo({
+   ogImage = DEFAULT_OG_IMAGE,
+   ogType = "website",
+   schema,
++  keywords,
+   noIndex = false,
+ }: SeoProps = {}) {
+   useEffect(() => {
+@@ -92,6 +95,11 @@ export function useSeo({
+     // Description
+     setMeta('meta[name="description"]', "name", "description", description);
+ 
++    // Keywords
++    if (keywords) {
++      setMeta('meta[name="keywords"]', "name", "keywords", keywords);
++    }
++
+     // Robots
+     setMeta(
+       'meta[name="robots"]',
+@@ -126,5 +134,5 @@ export function useSeo({
+       // Limpiar JSON-LD al cambiar de página
+       removeSchema("schema-org-page");
+     };
+-  }, [title, description, canonical, ogImage, ogType, schema, noIndex]);
++  }, [title, description, canonical, ogImage, ogType, schema, keywords, noIndex]);
+ }
+diff --git a/src/pages/Blog.tsx b/src/pages/Blog.tsx
+index 6c5f705..801fb72 100644
+--- a/src/pages/Blog.tsx
++++ b/src/pages/Blog.tsx
+@@ -16,6 +16,8 @@ export default function Blog() {
+     description:
+       "Noticias, análisis y recursos del Sindicato SUTRAMCHP: negociación colectiva, derechos laborales, seguridad minera y novedades de los trabajadores de Chinalco Perú.",
+     canonical: "https://sutramchperu.com/blog",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     schema: {
+       "@context": "https://schema.org",
+       "@type": "Blog",
+diff --git a/src/pages/Contacto.tsx b/src/pages/Contacto.tsx
+index 6e53dad..9824a1e 100644
+--- a/src/pages/Contacto.tsx
++++ b/src/pages/Contacto.tsx
+@@ -15,14 +15,17 @@ export default function Contacto() {
+   useSeo({
+     title: "Contacto",
+     description:
+-      "Contáctate con SUTRAMCHP: oficina en Av. Minera 1234, Morococha, Junín. Teléfono +51 914 130 326 | Email: secretaria_sindicato@sutramchp.pe. Atención: lunes–viernes 8:00 am–5:00 pm.",
++      "Contáctate con SUTRAMCHP (SUTRAMCHPERU), el sindicato minero de Chinalco Perú: oficina en Av. Minera 1234, Morococha, Junín. Teléfono +51 914 130 326 | Email: secretaria_sindicato@sutramchp.pe. Atención: lunes–viernes 8:00 am–5:00 pm.",
+     canonical: "https://sutramchperu.com/contacto",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     schema: {
+       "@context": "https://schema.org",
+       "@type": "LocalBusiness",
+       name: "SUTRAMCHP",
++      alternateName: ["SUTRAMCHPERU", "Sindicato Minero Chinalco"],
+       description:
+-        "Sindicato Unificado de Trabajadores de Minera Chinalco Perú",
++        "Sindicato Unificado de Trabajadores de Minera Chinalco Perú (SUTRAMCHPERU), el sindicato minero de Chinalco",
+       url: "https://sutramchperu.com",
+       telephone: "+51-914-130-326",
+       email: "secretaria_sindicato@sutramchp.pe",
+diff --git a/src/pages/Directiva.tsx b/src/pages/Directiva.tsx
+index f57843e..b48b1a1 100644
+--- a/src/pages/Directiva.tsx
++++ b/src/pages/Directiva.tsx
+@@ -199,8 +199,10 @@ export default function Directiva() {
+   useSeo({
+     title: "Nuestra Directiva",
+     description:
+-      "Conoce a los dirigentes del Sindicato Unificado de Trabajadores de Minera Chinalco Perú (SUTRAMCHP): Secretario General, Secretarios de Área y toda la estructura sindical 2024-2026.",
++      "Conoce a los dirigentes del sindicato minero de Chinalco Perú, SUTRAMCHP (SUTRAMCHPERU): Secretario General, Secretarios de Área y toda la estructura sindical 2024-2026.",
+     canonical: "https://sutramchperu.com/directiva",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     schema: personSchema,
+   });
+ 
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index dded8b3..5ca6288 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -31,12 +31,18 @@ const HOME_SCHEMA = [
+     "@context": "https://schema.org",
+     "@type": "Organization",
+     name: "SUTRAMCHP",
+-    alternateName: "Sindicato Unificado de Trabajadores Minera Chinalco Perú",
++    alternateName: [
++      "Sindicato Unificado de Trabajadores Minera Chinalco Perú",
++      "SUTRAMCHPERU",
++      "Sindicato Minero Chinalco",
++    ],
+     url: "https://sutramchperu.com",
+     logo: "https://sutramchperu.com/images/logo.png",
+-    foundingDate: "2003",
++    foundingDate: "2014-12-17",
+     description:
+-      "SUTRAMCHP es el sindicato de trabajadores mineros de Chinalco Perú, fundado en 2003. Representa a más de 2,500 trabajadores en la mina Toromocho, Morococha, Junín.",
++      "SUTRAMCHP es el sindicato minero de Chinalco Perú, fundado el 17 de diciembre de 2014. Representa a más de 2,500 trabajadores en la mina Toromocho, Morococha, Junín.",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     address: {
+       "@type": "PostalAddress",
+       streetAddress: "Av. Minera 1234",
+@@ -61,7 +67,9 @@ const HOME_SCHEMA = [
+     name: "SUTRAMCHP",
+     url: "https://sutramchperu.com",
+     description:
+-      "Sitio web oficial del Sindicato Unificado de Trabajadores Minera Chinalco Perú",
++      "Sitio web oficial del Sindicato Unificado de Trabajadores Minera Chinalco Perú (SUTRAMCHPERU)",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     potentialAction: {
+       "@type": "SearchAction",
+       target: {
+@@ -80,7 +88,7 @@ const HOME_SCHEMA = [
+         name: "¿Qué es SUTRAMCHP?",
+         acceptedAnswer: {
+           "@type": "Answer",
+-          text: "SUTRAMCHP es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado en 2003. Representa y defiende los derechos laborales de más de 2,500 trabajadores mineros que laboran en la mina Toromocho, ubicada en Morococha, provincia de Yauli, Junín, Perú.",
++          text: "SUTRAMCHP es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado el 17 de diciembre de 2014. Representa y defiende los derechos laborales de más de 2,500 trabajadores mineros que laboran en la mina Toromocho, ubicada en Morococha, provincia de Yauli, Junín, Perú.",
+         },
+       },
+       {
+@@ -115,6 +123,14 @@ const HOME_SCHEMA = [
+           text: "Los afiliados de SUTRAMCHP trabajan principalmente en la mina Toromocho, operada por Minera Chinalco Perú, una subsidiaria de Aluminum Corporation of China (Chinalco). La mina Toromocho es uno de los yacimientos de cobre más grandes del mundo y está ubicada en Morococha, Junín.",
+         },
+       },
++      {
++        "@type": "Question",
++        name: "¿SUTRAMCHP y SUTRAMCHPERU son el mismo sindicato?",
++        acceptedAnswer: {
++          "@type": "Answer",
++          text: "Sí. SUTRAMCHP, también identificado como SUTRAMCHPERU, es el sindicato minero de Chinalco Perú (Sindicato Unificado de Trabajadores de Minera Chinalco Perú). Es la única organización sindical que representa a los trabajadores de Minera Chinalco Perú en la mina Toromocho, Morococha, Junín.",
++        },
++      },
+     ],
+   },
+ ];
+@@ -461,17 +477,19 @@ function AboutSection() {
+               className="text-base md:text-lg leading-relaxed mb-4"
+               style={{ color: "var(--color-text-secondary)" }}
+             >
+-              El Sindicato de Trabajadores Mineros de Chinalco Perú (SUTRAMCHP)
+-              nació de la necesidad de proteger y promover los derechos laborales
+-              de los trabajadores de la industria minera en Perú.
++              El Sindicato de Trabajadores Mineros de Chinalco Perú (SUTRAMCHP),
++              también conocido como SUTRAMCHPERU, es el sindicato minero de
++              Chinalco que nació de la necesidad de proteger y promover los
++              derechos laborales de los trabajadores de la industria minera en
++              Perú.
+             </p>
+             <p
+               className="text-sm md:text-base leading-relaxed mb-6"
+               style={{ color: "var(--color-text-secondary)" }}
+             >
+-              Nuestra organización trabaja incansablemente para garantizar
+-              condiciones justas de trabajo, salarios dignos y un ambiente seguro
+-              para todos nuestros agremiados.
++              Como sindicato de Chinalco Perú, trabajamos incansablemente para
++              garantizar condiciones justas de trabajo, salarios dignos y un
++              ambiente seguro para todos nuestros agremiados.
+             </p>
+             <Link
+               to="/nosotros"
+@@ -826,7 +844,7 @@ function ContactSection() {
+ const FAQ_DATA = [
+   {
+     q: "¿Qué es SUTRAMCHP?",
+-    a: "SUTRAMCHP es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado en 2003. Representa y defiende los derechos laborales de más de 2,500 trabajadores mineros en la mina Toromocho, Morococha, Junín.",
++    a: "SUTRAMCHP (SUTRAMCHPERU) es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado el 17 de diciembre de 2014. Representa y defiende los derechos laborales de más de 2,500 trabajadores mineros en la mina Toromocho, Morococha, Junín.",
+   },
+   {
+     q: "¿Cómo puedo afiliarme a SUTRAMCHP?",
+@@ -924,8 +942,10 @@ export default function Home() {
+   useSeo({
+     title: "Inicio",
+     description:
+-      "SUTRAMCHP — Sindicato Unificado de Trabajadores de Minera Chinalco Perú. Fundado en 2003, defendemos los derechos laborales de más de 2,500 trabajadores en la mina Toromocho, Junín.",
++      "SUTRAMCHP (SUTRAMCHPERU) — sindicato minero de Chinalco Perú. Fundado el 17 de diciembre de 2014, defendemos los derechos laborales de más de 2,500 trabajadores en la mina Toromocho, Junín.",
+     canonical: "https://sutramchperu.com/",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     schema: HOME_SCHEMA,
+   });
+ 
+diff --git a/src/pages/Normativa.tsx b/src/pages/Normativa.tsx
+index d49c7b7..c84d99f 100644
+--- a/src/pages/Normativa.tsx
++++ b/src/pages/Normativa.tsx
+@@ -38,6 +38,8 @@ export default function Normativa() {
+     description:
+       "Repositorio de leyes, reglamentos, convenios y resoluciones que protegen los derechos de los trabajadores mineros de Chinalco Perú. Descarga documentos laborales vigentes.",
+     canonical: "https://sutramchperu.com/normativa",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     schema: {
+       "@context": "https://schema.org",
+       "@type": "CollectionPage",
+diff --git a/src/pages/Nosotros.tsx b/src/pages/Nosotros.tsx
+index 1469275..dfb7b39 100644
+--- a/src/pages/Nosotros.tsx
++++ b/src/pages/Nosotros.tsx
+@@ -1,6 +1,4 @@
+-import { useRef, useEffect } from "react";
+-import { Target, Eye, Heart, Shield, Users, Award } from "lucide-react";
+-import gsap from "gsap";
++import { Target, Eye, Heart, Shield, Users, Award, BadgeCheck } from "lucide-react";
+ import { useSeo } from "@/hooks/useSeo";
+ 
+ const NOSOTROS_SCHEMA = {
+@@ -8,8 +6,10 @@ const NOSOTROS_SCHEMA = {
+   "@type": "AboutPage",
+   name: "Historia y valores de SUTRAMCHP",
+   description:
+-    "SUTRAMCHP fue fundado en 2003 por trabajadores mineros de Chinalco Perú para defender los derechos laborales. Con más de 22 años de trayectoria, representa a 2,500 agremiados en la mina Toromocho, Morococha, Junín.",
++    "SUTRAMCHP fue fundado el 17 de diciembre de 2014 por trabajadores mineros de Chinalco Perú para defender los derechos laborales. Con más de 11 años de trayectoria, representa a 2,500 agremiados en la mina Toromocho, Morococha, Junín.",
+   url: "https://sutramchperu.com/nosotros",
++  keywords:
++    "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+   isPartOf: {
+     "@type": "WebSite",
+     name: "SUTRAMCHP",
+@@ -18,7 +18,7 @@ const NOSOTROS_SCHEMA = {
+   about: {
+     "@type": "Organization",
+     name: "SUTRAMCHP",
+-    foundingDate: "2003",
++    foundingDate: "2014-12-17",
+     numberOfEmployees: {
+       "@type": "QuantitativeValue",
+       value: 2500,
+@@ -32,45 +32,6 @@ const NOSOTROS_SCHEMA = {
+   },
+ };
+ 
+-const timeline = [
+-  {
+-    year: "2003",
+-    title: "Fundación de SUTRAMCHP",
+-    description:
+-      "Un grupo de valientes trabajadores mineros funda el Sindicato de Trabajadores Mineros de Chinalco Perú con la misión de defender los derechos laborales en la industria minera.",
+-  },
+-  {
+-    year: "2008",
+-    title: "Primera Convención Colectiva",
+-    description:
+-      "Se logra la primera convención colectiva histórica, estableciendo beneficios sin precedentes para los trabajadores incluyendo seguro médico familiar y bono educativo.",
+-  },
+-  {
+-    year: "2012",
+-    title: "Construcción de la Casa del Minero",
+-    description:
+-      "Inauguración de la Casa del Minero, un espacio de encuentro, capacitación y recreación para todos los agremiados y sus familias.",
+-  },
+-  {
+-    year: "2015",
+-    title: "Programa de Vivienda",
+-    description:
+-      "Lanzamiento del programa de vivienda que ha beneficiado a más de 500 familias de trabajadores mineros con subsidios y créditos preferenciales.",
+-  },
+-  {
+-    year: "2019",
+-    title: "Centro de Salud Propio",
+-    description:
+-      "Apertura del Centro de Salud SUTRAMCHP con atención médica 24/7, especializada en salud ocupacional y medicina familiar.",
+-  },
+-  {
+-    year: "2024",
+-    title: "22 Años de Lucha y Conquistas",
+-    description:
+-      "Celebración de 22 años de historia sindical con más de 2,500 agremiados activos y un legado de conquistas laborales que mejoran la vida de los trabajadores mineros.",
+-  },
+-];
+-
+ const values = [
+   {
+     icon: <Heart size={28} />,
+@@ -99,30 +60,16 @@ const values = [
+ ];
+ 
+ export default function Nosotros() {
+-  const timelineRef = useRef<HTMLDivElement>(null);
+-
+   useSeo({
+     title: "Nuestra Historia",
+     description:
+-      "Conoce la historia de SUTRAMCHP: más de 22 años defendiendo los derechos laborales de los trabajadores de Minera Chinalco Perú. Misión, visión, valores y trayectoria sindical desde 2003.",
++      "Conoce la historia de SUTRAMCHP: más de 11 años defendiendo los derechos laborales de los trabajadores de Minera Chinalco Perú. Misión, visión, valores y trayectoria sindical desde el 17 de diciembre de 2014.",
+     canonical: "https://sutramchperu.com/nosotros",
++    keywords:
++      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+     schema: NOSOTROS_SCHEMA,
+   });
+ 
+-  useEffect(() => {
+-    const ctx = gsap.context(() => {
+-      gsap.from(".timeline-item", {
+-        opacity: 0,
+-        y: 40,
+-        duration: 0.6,
+-        stagger: 0.15,
+-        ease: "expo.out",
+-        scrollTrigger: { trigger: timelineRef.current, start: "top 75%" },
+-      });
+-    }, timelineRef);
+-    return () => ctx.revert();
+-  }, []);
+-
+   return (
+     <div style={{ backgroundColor: "var(--color-background)" }}>
+       {/* Hero */}
+@@ -138,7 +85,7 @@ export default function Nosotros() {
+             className="text-sm sm:text-base md:text-lg max-w-2xl mx-auto"
+             style={{ color: "rgba(255,255,255,0.75)" }}
+           >
+-            Más de dos décadas de lucha y conquistas laborales
++            Más de 11 años de lucha y conquistas laborales
+           </p>
+         </div>
+       </div>
+@@ -256,72 +203,42 @@ export default function Nosotros() {
+         </div>
+       </section>
+ 
+-      {/* Timeline */}
+-      <section ref={timelineRef} className="section-padding">
++      {/* Fecha de creación */}
++      <section className="section-padding">
+         <div className="container-padding mx-auto">
+-          <div className="text-center mb-12">
++          <div className="text-center mb-10">
+             <p
+               className="text-xs font-medium tracking-[0.08em] uppercase mb-3"
+               style={{ color: "var(--color-secondary)" }}
+             >
+-              LÍNEA DE TIEMPO
++              NUESTRA HISTORIA
+             </p>
+             <h2
+               className="font-heading text-3xl md:text-4xl font-bold"
+               style={{ color: "var(--color-text-primary)" }}
+             >
+-              Nuestra Trayectoria
++              Fecha de Creación
+             </h2>
+           </div>
+ 
+-          <div className="max-w-3xl mx-auto relative">
+-            {/* Line */}
++          <div
++            className="max-w-3xl mx-auto p-6 sm:p-8 md:p-10 rounded-2xl card-shadow text-center"
++            style={{ backgroundColor: "var(--color-surface)" }}
++          >
+             <div
+-              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2"
++              className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5"
+               style={{ backgroundColor: "var(--color-primary)" }}
+-            />
+-
+-            {timeline.map((item, index) => (
+-              <div
+-                key={item.year}
+-                className={`timeline-item relative flex items-start gap-6 mb-10 ${
+-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+-                }`}
+-              >
+-                {/* Year Badge */}
+-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-10">
+-                  <div
+-                    className="w-16 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
+-                    style={{ backgroundColor: "var(--color-secondary)" }}
+-                  >
+-                    {item.year}
+-                  </div>
+-                </div>
+-
+-                {/* Content */}
+-                <div
+-                  className={`ml-14 md:ml-0 md:w-1/2 ${
+-                    index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
+-                  }`}
+-                >
+-                  <h3
+-                    className="font-heading text-lg font-semibold mb-2"
+-                    style={{ color: "var(--color-text-primary)" }}
+-                  >
+-                    {item.title}
+-                  </h3>
+-                  <p
+-                    className="text-sm leading-relaxed"
+-                    style={{ color: "var(--color-text-secondary)" }}
+-                  >
+-                    {item.description}
+-                  </p>
+-                </div>
+-
+-                {/* Spacer for opposite side */}
+-                <div className="hidden md:block md:w-1/2" />
+-              </div>
+-            ))}
++            >
++              <BadgeCheck size={22} className="text-white" />
++            </div>
++            <p
++              className="text-sm md:text-base leading-relaxed"
++              style={{ color: "var(--color-text-secondary)" }}
++            >
++              Fundado el 17 de diciembre de 2014. Registro Sindical N°
++              001-2015 GRJ/GRDS/DRTP/DPSC. del 01 de setiembre de 2015.
++              Afiliado a la F.M.R.T.M.M.C. - F.N.T.M.M.S.O. - C.G.T.P.
++            </p>
+           </div>
+         </div>
+       </section>

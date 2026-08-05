@@ -103,7 +103,7 @@ const HOME_SCHEMA = [
         name: "¿Cómo puedo afiliarme a SUTRAMCHP?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Para afiliarse a SUTRAMCHP debes ser trabajador de Minera Chinalco Perú. Puedes comunicarte con la secretaría del sindicato al teléfono +51 914 130 326 o escribir al correo secretaria_sindicato@sutramchp.pe con tu solicitud de afiliación.",
+          text: "Para afiliarse a SUTRAMCHP debes ser trabajador de Minera Chinalco Perú. Puedes comunicarte con la secretaría del sindicato al teléfono +51 914 130 326 o escribir al correo secretaria_sindicato@sutramchperu.com con tu solicitud de afiliación.",
         },
       },
       {
@@ -855,7 +855,7 @@ function ContactSection() {
                     className="text-sm"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
-                    secretaria_sindicato@sutramchp.pe
+                    secretaria_sindicato@sutramchperu.com
                   </p>
                 </div>
               </div>
@@ -942,7 +942,7 @@ const FAQ_DATA = [
   },
   {
     q: "¿Cómo puedo afiliarme a SUTRAMCH?",
-    a: "Para afiliarse debes ser trabajador de Minera Chinalco Perú. Contáctanos al +51 914 130 326 o escribe a secretaria_sindicato@sutramchp.pe con tu solicitud de afiliación.",
+    a: "Para afiliarse debes ser trabajador de Minera Chinalco Perú. Contáctanos al +51 914 130 326 o escribe a secretaria_sindicato@sutramchperu.com con tu solicitud de afiliación.",
   },
   {
     q: "¿Qué beneficios tienen los afiliados?",

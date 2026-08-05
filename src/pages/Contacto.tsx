@@ -15,7 +15,7 @@ export default function Contacto() {
   useSeo({
     title: "Contacto",
     description:
-      "Contáctate con SUTRAMCHP (SUTRAMCHPERU), el sindicato minero de Chinalco Perú: oficina en Av. Minería s/n, Morococha, Junín - Perú. Teléfono +51 914 130 326 | Email: secretaria_sindicato@sutramchp.pe. Atención: lunes–viernes 8:00 am–5:00 pm.",
+      "Contáctate con SUTRAMCHP (SUTRAMCHPERU), el sindicato minero de Chinalco Perú: oficina en Av. Minería s/n, Morococha, Junín - Perú. Teléfono +51 914 130 326 | Email: secretaria_sindicato@sutramchperu.com. Atención: lunes–viernes 8:00 am–5:00 pm.",
     canonical: "https://sutramchperu.com/contacto",
     keywords:
       "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
@@ -28,7 +28,7 @@ export default function Contacto() {
         "Sindicato Unificado de Trabajadores de Minera Chinalco Perú (SUTRAMCHPERU), el sindicato minero de Chinalco",
       url: "https://sutramchperu.com",
       telephone: "+51-914-130-326",
-      email: "secretaria_sindicato@sutramchp.pe",
+      email: "secretaria_sindicato@sutramchperu.com",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Av. Minería s/n",
@@ -272,7 +272,7 @@ export default function Contacto() {
                     className="text-sm"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
-                    secretaria_sindicato@sutramchp.pe
+                    secretaria_sindicato@sutramchperu.com
                   </p>
                 </div>
               </div>

@@ -95,7 +95,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5 text-white/60 text-sm">
                 <Mail size={16} className="shrink-0" />
-                <a href="mailto:secretaria_sindicato@sutramchp.pe" className="hover:text-white transition-colors break-all">secretaria_sindicato@sutramchp.pe</a>
+                <a href="mailto:secretaria_sindicato@sutramchperu.com" className="hover:text-white transition-colors break-all">secretaria_sindicato@sutramchperu.com</a>
               </li>
             </ul>
 

@@ -199,14 +199,13 @@ function HeroSection() {
   const slides = [
     {
       type: "video" as const,
-      src: "/images/video_1080p.mp4",      // ← editar nombre luego
-      alt: "Video institucional SUTRAMCH",
-
+      src: "/images/video2.mp4",
+      alt: "Video institucional",
     },
     {
       type: "video" as const,
-      src: "/images/video2.mp4",   // ← editar nombre luego
-      alt: "Video institucional",
+      src: "/images/video_1080p.mp4",
+      alt: "Video institucional SUTRAMCH",
     },
     {
       type: "image" as const,
@@ -246,15 +245,12 @@ function HeroSection() {
         {slides.map((slide, i) => (
           <div
             key={i}
-            className="absolute inset-0 transition-opacity duration-700 flex items-center justify-center bg-black"
+            className="absolute inset-0 transition-opacity duration-700"
             style={{ opacity: i === currentSlide ? 1 : 0, zIndex: i === currentSlide ? 1 : 0 }}
           >
             {slide.type === "image" ? (
               <>
-                {/* Capa de opacidad añadida para el tercer slide (índice 2) */}
-                {i === 2 && (
-                  <div className="absolute inset-0 bg-black/60 z-10" />
-                )}
+                <div className="absolute inset-0 bg-black/60 z-10" />
                 <img
                   src={slide.src}
                   alt={slide.alt}
@@ -262,27 +258,21 @@ function HeroSection() {
                 />
               </>
             ) : (
-              <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center bg-black">
-                {/* Background image behind the video, showing its left and right sides in the empty spaces */}
+              <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
+                {/* Fondo desenfocado para rellenar los lados en pantallas muy anchas */}
                 <img
                   src="/images/slide1.png"
                   alt="Fondo Toromocho"
-                  className="absolute inset-0 w-full h-full object-cover opacity-40 select-none pointer-events-none"
+                  className="absolute inset-0 w-full h-full object-cover opacity-30 select-none pointer-events-none blur-sm"
                 />
-                {/* Sharp foreground main video */}
+                {/* Video principal — ocupa toda la altura, igual que la imagen */}
                 <video
                   src={slide.src}
                   autoPlay
                   muted
                   loop
                   playsInline
-                  className="relative z-10"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    imageRendering: "-webkit-optimize-contrast" as any,
-                  }}
+                  className="absolute inset-0 w-full h-full object-cover z-10"
                 />
               </div>
             )}
@@ -331,7 +321,7 @@ function HeroSection() {
       >
         <div className="max-w-3xl">
           <p
-            className="hero-headline text-xs sm:text-base md:text-lg font-semibold tracking-wider uppercase mb-3 text-[var(--color-accent)]"
+            className="hero-headline text-xs sm:text-base md:text-lg font-semibold tracking-wider uppercase mb-3 text-white"
             style={{ textShadow: "0 2px 8px rgba(0, 0, 0, 0.9)" }}
           >
             Te damos la bienvenida a un espacio de unión, compromiso y bienestar para todos los trabajadores

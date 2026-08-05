@@ -7,6 +7,7 @@ import BlogPost from "./pages/BlogPost";
 import Nosotros from "./pages/Nosotros";
 import Directiva from "./pages/Directiva";
 import Normativa from "./pages/Normativa";
+import Documentos from "./pages/Documentos";
 import Contacto from "./pages/Contacto";
 import NotFound from "./pages/NotFound";
 
@@ -68,6 +69,14 @@ export default function App() {
         element={
           <Layout>
             <Normativa />
+          </Layout>
+        }
+      />
+      <Route
+        path="/documentos"
+        element={
+          <Layout>
+            <Documentos />
           </Layout>
         }
       />

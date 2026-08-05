@@ -8,6 +8,7 @@ const navLinks = [
   { label: "DIRECTIVA", href: "/directiva" },
   { label: "NOTICIAS", href: "/blog" },
   { label: "NORMATIVA", href: "/normativa" },
+  { label: "DOCUMENTOS", href: "/documentos" },
   { label: "CONTACTO", href: "/contacto" },
 ];
 

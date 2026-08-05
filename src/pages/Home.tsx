@@ -1131,7 +1131,7 @@ function AlliesSection() {
               <img
                 src={ally.img}
                 alt={ally.name}
-                className="max-h-[70px] max-w-[150px] w-auto h-auto object-contain transition-opacity duration-200 hover:opacity-75"
+                className="max-h-[91px] max-w-[195px] w-auto h-auto object-contain transition-opacity duration-200 hover:opacity-75"
                 loading="lazy"
               />
             </a>
@@ -1176,8 +1176,8 @@ function AlliesSection() {
           animation-play-state: paused;
         }
         .allies-logo-card {
-          width: 200px;
-          height: 120px;
+          width: 260px;
+          height: 156px;
           padding: 0.5rem;
           cursor: pointer;
         }

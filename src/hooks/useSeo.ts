@@ -4,7 +4,9 @@
  * Inyecta en <head>:
  *  - <title>
  *  - <meta name="description">
+ *  - <meta name="keywords">
  *  - <link rel="canonical">
+ *  - Metatags GEO (geo.region, geo.placename, geo.position, ICBM)
  *  - Open Graph tags
  *  - Twitter Card tags
  *  - JSON-LD structured data (Schema.org)
@@ -12,11 +14,14 @@
 
 import { useEffect } from "react";
 
-const SITE_NAME = "SUTRAMCHP";
+const SITE_NAME = "SUTRAMCH";
+const SITE_FULL = "SUTRAMCH — Sindicato Chinalco Perú";
 const SITE_URL = "https://sutramchperu.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
 const DEFAULT_DESCRIPTION =
-  "SUTRAMCHP (Sindicato Unificado de Trabajadores de Minera Chinalco Perú) es el sindicato minero de Chinalco Perú, fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
+  "SUTRAMCH es el Sindicato Chinalco Perú (SUTRAMCHPERU), fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en la mina Toromocho, Morococha, Junín, Perú.";
+const DEFAULT_KEYWORDS =
+  "SUTRAMCH, SUTRAMCHPERU, Sindicato Chinalco, sindicato Chinalco Perú, sindicato minero Chinalco, sindicato Toromocho, trabajadores Chinalco Perú, derechos laborales mineros Junín";
 
 export interface SeoProps {
   /** Título de la página (sin el nombre del sitio). Ej: "Nuestra Historia" */
@@ -31,7 +36,7 @@ export interface SeoProps {
   ogType?: "website" | "article";
   /** JSON-LD structured data object(s) para Schema.org */
   schema?: object | object[];
-  /** Palabras clave SEO, separadas por coma. Ej: "sindicato chinalco, SUTRAMCH" */
+  /** Palabras clave SEO, separadas por coma */
   keywords?: string;
   /** Si true, noindex para bots */
   noIndex?: boolean;
@@ -79,13 +84,13 @@ export function useSeo({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   schema,
-  keywords,
+  keywords = DEFAULT_KEYWORDS,
   noIndex = false,
 }: SeoProps = {}) {
   useEffect(() => {
     const pageTitle = title
-      ? `${title} | ${SITE_NAME}`
-      : `${SITE_NAME} — Sindicato Unificado de Trabajadores Minera Chinalco Perú`;
+      ? `${title} | ${SITE_NAME} — Sindicato Chinalco Perú`
+      : `${SITE_FULL} | SUTRAMCHPERU.COM`;
 
     const canonicalUrl = canonical ?? `${SITE_URL}${window.location.pathname}`;
 
@@ -96,9 +101,7 @@ export function useSeo({
     setMeta('meta[name="description"]', "name", "description", description);
 
     // Keywords
-    if (keywords) {
-      setMeta('meta[name="keywords"]', "name", "keywords", keywords);
-    }
+    setMeta('meta[name="keywords"]', "name", "keywords", keywords);
 
     // Robots
     setMeta(
@@ -109,6 +112,12 @@ export function useSeo({
         ? "noindex, nofollow"
         : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     );
+
+    // GEO metatags (posicionamiento local Perú / Junín)
+    setMeta('meta[name="geo.region"]', "name", "geo.region", "PE-JUN");
+    setMeta('meta[name="geo.placename"]', "name", "geo.placename", "Morococha, Yauli, Junín, Perú");
+    setMeta('meta[name="geo.position"]', "name", "geo.position", "-11.60722;-76.16861");
+    setMeta('meta[name="ICBM"]', "name", "ICBM", "-11.60722, -76.16861");
 
     // Canonical
     setLink("canonical", canonicalUrl);
@@ -131,7 +140,6 @@ export function useSeo({
     }
 
     return () => {
-      // Limpiar JSON-LD al cambiar de página
       removeSchema("schema-org-page");
     };
   }, [title, description, canonical, ogImage, ogType, schema, keywords, noIndex]);

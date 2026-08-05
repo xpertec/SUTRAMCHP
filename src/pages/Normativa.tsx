@@ -39,22 +39,22 @@ export default function Normativa() {
   const [isLoading, setIsLoading] = useState(true);
 
   useSeo({
-    title: "Normativa Laboral",
+    title: "Normativa Laboral — Sindicato Chinalco",
     description:
-      "Repositorio de leyes, reglamentos, convenios y resoluciones que protegen los derechos de los trabajadores mineros de Chinalco Perú. Descarga documentos laborales vigentes.",
+      "Normativa laboral minera del Sindicato Chinalco Perú (SUTRAMCH): leyes, reglamentos, convenios colectivos y resoluciones que protegen los derechos de los trabajadores de Chinalco en Toromocho, Junín.",
     canonical: "https://sutramchperu.com/normativa",
     keywords:
-      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+      "normativa laboral Sindicato Chinalco, leyes mineras Peru, convenio colectivo Chinalco, reglamento minero Toromocho, derechos laborales mineros Peru, SUTRAMCH normativa, SUTRAMCHPERU leyes, legislación laboral minera Junín",
     schema: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "Normativa Laboral Minera — SUTRAMCHP",
+      name: "Normativa Laboral Minera — SUTRAMCH Sindicato Chinalco Perú",
       description:
-        "Marco legal que protege los derechos de los trabajadores mineros de Chinalco Perú: leyes, reglamentos, convenios y resoluciones laborales.",
+        "Marco legal que protege los derechos de los trabajadores de Chinalco Perú (Sindicato Chinalco): leyes laborales, reglamentos, convenios colectivos y resoluciones mineras.",
       url: "https://sutramchperu.com/normativa",
       isPartOf: {
         "@type": "WebSite",
-        name: "SUTRAMCHP",
+        name: "SUTRAMCH — Sindicato Chinalco Perú",
         url: "https://sutramchperu.com",
       },
     },

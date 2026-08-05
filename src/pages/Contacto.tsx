@@ -15,17 +15,17 @@ export default function Contacto() {
   useSeo({
     title: "Contacto",
     description:
-      "Contáctate con SUTRAMCHP (SUTRAMCHPERU), el sindicato minero de Chinalco Perú: oficina en Av. Minería s/n, Morococha, Junín - Perú. Teléfono +51 914 130 326 | Email: secretaria_sindicato@sutramchperu.com. Atención: lunes–viernes 8:00 am–5:00 pm.",
+      "Contáctate con el Sindicato Chinalco Perú (SUTRAMCH): oficina en Av. Minería s/n, Morococha, Junín. Tel. +51 914 130 326 | secretaria_sindicato@sutramchperu.com. Lunes–viernes 8:00–5:00 pm.",
     canonical: "https://sutramchperu.com/contacto",
     keywords:
-      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+      "contacto Sindicato Chinalco, contacto SUTRAMCH, dirección sindicato Chinalco Perú, teléfono SUTRAMCHPERU, oficina sindicato Morococha, afiliación Sindicato Chinalco, SUTRAMCH contacto Junín",
     schema: {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      name: "SUTRAMCHP",
-      alternateName: ["SUTRAMCHPERU", "Sindicato Minero Chinalco"],
+      name: "SUTRAMCH — Sindicato Chinalco Perú",
+      alternateName: ["SUTRAMCHPERU", "Sindicato Chinalco"],
       description:
-        "Sindicato Unificado de Trabajadores de Minera Chinalco Perú (SUTRAMCHPERU), el sindicato minero de Chinalco",
+        "Sindicato Chinalco Perú (SUTRAMCH / SUTRAMCHPERU): el sindicato de los trabajadores de Minera Chinalco Perú en la mina Toromocho, Morococha, Junín.",
       url: "https://sutramchperu.com",
       telephone: "+51-914-130-326",
       email: "secretaria_sindicato@sutramchperu.com",
@@ -36,6 +36,11 @@ export default function Contacto() {
         addressRegion: "Junín",
         postalCode: "12454",
         addressCountry: "PE",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: -11.60722,
+        longitude: -76.16861,
       },
       openingHoursSpecification: [
         {
@@ -51,11 +56,6 @@ export default function Contacto() {
           closes: "12:00",
         },
       ],
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: -11.72693745,
-        longitude: -76.1424922,
-      },
       sameAs: ["https://www.facebook.com/SUTRAMCHP"],
     },
   });

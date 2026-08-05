@@ -4,20 +4,19 @@ import { useSeo } from "@/hooks/useSeo";
 const NOSOTROS_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  name: "Historia y valores de SUTRAMCHP",
+  name: "Historia y valores de SUTRAMCH — Sindicato Chinalco Perú",
   description:
-    "SUTRAMCHP fue fundado el 17 de diciembre de 2014 por trabajadores mineros de Chinalco Perú para defender los derechos laborales. Con más de 11 años de trayectoria, representa a 2,500 agremiados en la mina Toromocho, Morococha, Junín.",
+    "SUTRAMCH (Sindicato Chinalco Perú) fue fundado el 17 de diciembre de 2014 por trabajadores de Chinalco Perú para defender los derechos laborales. Con más de 11 años, representa a 2,500 agremiados en la mina Toromocho, Morococha, Junín.",
   url: "https://sutramchperu.com/nosotros",
-  keywords:
-    "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
   isPartOf: {
     "@type": "WebSite",
-    name: "SUTRAMCHP",
+    name: "SUTRAMCH — Sindicato Chinalco Perú",
     url: "https://sutramchperu.com",
   },
   about: {
     "@type": "Organization",
-    name: "SUTRAMCHP",
+    name: "SUTRAMCH",
+    alternateName: ["SUTRAMCHPERU", "Sindicato Chinalco Perú"],
     foundingDate: "2014-12-17",
     numberOfEmployees: {
       "@type": "QuantitativeValue",
@@ -61,12 +60,12 @@ const values = [
 
 export default function Nosotros() {
   useSeo({
-    title: "Nuestra Historia",
+    title: "Nuestra Historia — Sindicato Chinalco",
     description:
-      "Conoce la historia de SUTRAMCHP: más de 11 años defendiendo los derechos laborales de los trabajadores de Minera Chinalco Perú. Misión, visión, valores y trayectoria sindical desde el 17 de diciembre de 2014.",
+      "Historia del Sindicato Chinalco Perú (SUTRAMCH): 11 años defendiendo derechos laborales de trabajadores de Minera Chinalco. Misión, visión, valores y trayectoria desde el 17 de diciembre de 2014.",
     canonical: "https://sutramchperu.com/nosotros",
     keywords:
-      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+      "historia Sindicato Chinalco, SUTRAMCH historia, SUTRAMCHPERU fundación, sindicato minero Chinalco Perú, misión sindicato Chinalco, valores sindicato minero, Chinalco Perú 2014, trabajadores Toromocho Junín",
     schema: NOSOTROS_SCHEMA,
   });
 

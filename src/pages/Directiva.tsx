@@ -197,12 +197,12 @@ export default function Directiva() {
   }));
 
   useSeo({
-    title: "Nuestra Directiva",
+    title: "Directiva Sindical — Sindicato Chinalco",
     description:
-      "Conoce a los dirigentes del sindicato minero de Chinalco Perú, SUTRAMCHP (SUTRAMCHPERU): Secretario General, Secretarios de Área y toda la estructura sindical 2024-2026.",
+      "Directiva del Sindicato Chinalco Perú (SUTRAMCH): conoce al Secretario General, Secretarios de Área y la estructura sindical 2024–2026 que defiende los derechos de los trabajadores de Chinalco.",
     canonical: "https://sutramchperu.com/directiva",
     keywords:
-      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+      "directiva Sindicato Chinalco, dirigentes SUTRAMCH, secretario general sindicato Chinalco, directivos SUTRAMCHPERU, estructura sindical Chinalco Perú, representantes sindicato minero Toromocho",
     schema: personSchema,
   });
 

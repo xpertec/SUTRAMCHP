@@ -1,6 +1,14 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 Disallow: /studio/
 
-# Sitemap
+User-agent: Googlebot
+Allow: /
+Disallow: /studio/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /studio/
+
+# Sitemap — SUTRAMCH Sindicato Chinalco Perú
 Sitemap: https://sutramchperu.com/sitemap.xml

@@ -12,22 +12,22 @@ export default function Blog() {
   const [isLoading, setIsLoading] = useState(true);
 
   useSeo({
-    title: "Noticias Sindicales",
+    title: "Noticias Sindicales — Sindicato Chinalco",
     description:
-      "Noticias, análisis y recursos del Sindicato SUTRAMCHP: negociación colectiva, derechos laborales, seguridad minera y novedades de los trabajadores de Chinalco Perú.",
+      "Noticias del Sindicato Chinalco Perú (SUTRAMCH): negociación colectiva, derechos laborales mineros, seguridad en Toromocho y novedades de los trabajadores de Chinalco Perú.",
     canonical: "https://sutramchperu.com/blog",
     keywords:
-      "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
+      "noticias Sindicato Chinalco, noticias SUTRAMCH, noticias laborales mineros Peru, negociación colectiva Chinalco, derechos mineros Toromocho, novedades SUTRAMCHPERU, noticias sindicales Junín",
     schema: {
       "@context": "https://schema.org",
       "@type": "Blog",
-      name: "Blog Sindical SUTRAMCHP",
+      name: "Noticias Sindicales — SUTRAMCH Sindicato Chinalco Perú",
       description:
-        "Noticias y análisis sobre derechos laborales, negociación colectiva y vida sindical de los trabajadores mineros de Chinalco Perú.",
+        "Noticias y análisis sobre derechos laborales, negociación colectiva y vida sindical de los trabajadores de Chinalco Perú (Sindicato Chinalco).",
       url: "https://sutramchperu.com/blog",
       publisher: {
         "@type": "Organization",
-        name: "SUTRAMCHP",
+        name: "SUTRAMCH — Sindicato Chinalco Perú",
         url: "https://sutramchperu.com",
       },
     },

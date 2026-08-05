@@ -39,6 +39,8 @@ export default {
       name: 'imagen',
       title: 'Imagen de portada (miniatura de la tarjeta)',
       type: 'image',
+      description:
+        'Opcional. Si no subes una imagen, la página automáticamente usará la primera página del PDF como miniatura.',
       options: {
         hotspot: true,
       },

@@ -12,6 +12,7 @@ import {
   getPdfUrl,
   getImagenUrl,
 } from "@/services/normativasService";
+import { PdfThumbnail } from "@/components/PdfThumbnail";
 import type { Normativa as NormativaType } from "@/types/normativa";
 import { useSeo } from "@/hooks/useSeo";
 
@@ -221,7 +222,7 @@ export default function Normativa() {
                     if (!pdfUrl) e.preventDefault();
                   }}
                 >
-                  {/* Miniatura */}
+                  {/* Miniatura: imagen manual > primera página del PDF > ícono */}
                   <div
                     className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden shrink-0 flex items-center justify-center"
                     style={{ backgroundColor: "var(--color-primary)" }}
@@ -229,6 +230,12 @@ export default function Normativa() {
                     {imagenUrl ? (
                       <img
                         src={imagenUrl}
+                        alt={doc.titulo}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : pdfUrl ? (
+                      <PdfThumbnail
+                        pdfUrl={pdfUrl}
                         alt={doc.titulo}
                         className="w-full h-full object-cover"
                       />

@@ -318,9 +318,12 @@ function HeroSection() {
 // ─── News Section ───
 function NewsSection() {
   const [noticias, setNoticias] = useState<Noticia[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    obtenerNoticias().then((data) => setNoticias(data.slice(0, 3)));
+    obtenerNoticias()
+      .then((data) => setNoticias(data.slice(0, 3)))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -367,7 +370,24 @@ function NewsSection() {
         </div>
 
         {/* News Grid */}
-        {noticias.length ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="card-shadow rounded-lg overflow-hidden bg-white"
+              >
+                <div className="aspect-video bg-gray-200 animate-pulse" />
+                <div className="p-5 space-y-3">
+                  <div className="h-4 w-20 bg-gray-200 rounded animate-pulse" />
+                  <div className="h-5 w-full bg-gray-200 rounded animate-pulse" />
+                  <div className="h-4 w-full bg-gray-200 rounded animate-pulse" />
+                  <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : noticias.length ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {noticias.map((post) => (
               <Link
@@ -413,21 +433,16 @@ function NewsSection() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="card-shadow rounded-lg overflow-hidden bg-white"
-              >
-                <div className="aspect-video bg-gray-200 animate-pulse" />
-                <div className="p-5 space-y-3">
-                  <div className="h-4 w-20 bg-gray-200 rounded animate-pulse" />
-                  <div className="h-5 w-full bg-gray-200 rounded animate-pulse" />
-                  <div className="h-4 w-full bg-gray-200 rounded animate-pulse" />
-                  <div className="h-3 w-24 bg-gray-200 rounded animate-pulse" />
-                </div>
-              </div>
-            ))}
+          <div
+            className="text-center py-16 rounded-xl"
+            style={{ backgroundColor: "var(--color-surface-alt)" }}
+          >
+            <p
+              className="text-base"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              Aún no hay noticias publicadas. Vuelve pronto.
+            </p>
           </div>
         )}
 

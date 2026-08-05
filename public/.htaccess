@@ -1,13 +1,19 @@
-# Necesario para que React Router funcione en hosting compartido (cPanel/Apache).
-# Sin esto, recargar /blog o /normativa directamente da 404.
+# Necesario para React Router en hosting compartido (cPanel/Apache).
 
 RewriteEngine On
 
-# Si el archivo o carpeta solicitado existe físicamente, servirlo tal cual
+# ── 1. Forzar HTTPS ──────────────────────────────────────────────────────────
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ── 2. Forzar sin www (canonical non-www) ────────────────────────────────────
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# ── 3. Servir archivos/carpetas físicas tal cual ──────────────────────────────
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# En cualquier otro caso, redirigir a index.html para que React Router
-# resuelva la ruta en el navegador
+# ── 4. Todo lo demás → index.html (React Router) ────────────────────────────
 RewriteRule ^ index.html [L]

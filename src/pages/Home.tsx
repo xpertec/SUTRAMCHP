@@ -161,6 +161,31 @@ const HOME_SCHEMA = [
       },
     ],
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://sutramchperu.com/#webpage",
+    url: "https://sutramchperu.com/",
+    name: "SUTRAMCH — Sindicato Chinalco Perú | SUTRAMCHPERU.COM",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://sutramchperu.com/#website",
+      url: "https://sutramchperu.com",
+      name: "SUTRAMCH — Sindicato Chinalco Perú",
+    },
+    about: {
+      "@type": "Organization",
+      name: "SUTRAMCH",
+      alternateName: ["SUTRAMCHPERU", "Sindicato Chinalco Perú"],
+    },
+    description:
+      "Sitio oficial de SUTRAMCH (Sindicato Chinalco Perú / SUTRAMCHPERU). Fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en la mina Toromocho, Morococha, Junín, Perú.",
+    inLanguage: "es-PE",
+    potentialAction: {
+      "@type": "ReadAction",
+      target: "https://sutramchperu.com/",
+    },
+  },
 ];
 
 // ─── Hero Section ───
@@ -1177,8 +1202,9 @@ function AlliesSection() {
 }
 export default function Home() {
   useSeo({
+    title: "Inicio",
     description:
-      "SUTRAMCH (Sindicato Chinalco Perú) — sitio oficial. Fundado el 17 dic 2014, defendemos los derechos laborales de más de 2,500 trabajadores en la mina Toromocho, Morococha, Junín.",
+      "SUTRAMCH (Sindicato Chinalco Perú) — sitio oficial de SUTRAMCHPERU.COM. Fundado el 17 dic 2014, defendemos los derechos laborales de más de 2,500 trabajadores en la mina Toromocho, Morococha, Junín.",
     canonical: "https://sutramchperu.com/",
     keywords:
       "SUTRAMCH, SUTRAMCHPERU, Sindicato Chinalco, sindicato Chinalco Perú, sindicato minero Chinalco, Sindicato Chinalco Peru, sindicato Toromocho, trabajadores Chinalco Perú, derechos laborales mineros Junín, mina Toromocho sindicato, negociación colectiva Chinalco, sindicato Morococha",

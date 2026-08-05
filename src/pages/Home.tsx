@@ -52,7 +52,7 @@ const HOME_SCHEMA = [
       "sindicato chinalco, sindicato minero chinalco, SUTRAMCH, SUTRAMCHPERU, chinalco, chinalco peru",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Av. Minera 1234",
+      streetAddress: "Av. Minería s/n",
       addressLocality: "Morococha",
       addressRegion: "Junín",
       addressCountry: "PE",
@@ -119,7 +119,7 @@ const HOME_SCHEMA = [
         name: "¿Dónde está ubicada la oficina de SUTRAMCHP?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "La oficina principal de SUTRAMCHP está ubicada en Av. Minera 1234, Morococha, Yauli, Junín, Perú. El horario de atención es de lunes a viernes de 8:00 am a 5:00 pm y sábados de 8:00 am a 12:00 pm.",
+          text: "La oficina principal de SUTRAMCHP está ubicada en Av. Minería s/n, Morococha, Yauli, Junín - Perú. El horario de atención es de lunes a viernes de 8:00 am a 5:00 pm y sábados de 8:00 am a 12:00 pm.",
         },
       },
       {
@@ -154,7 +154,7 @@ function HeroSection() {
     {
       type: "video" as const,
       src: "/images/video_1080p.mp4",      // ← editar nombre luego
-      alt: "Video institucional SUTRAMCHP",
+      alt: "Video institucional SUTRAMCH",
 
     },
     {
@@ -499,7 +499,7 @@ function AboutSection() {
               className="text-base md:text-lg leading-relaxed mb-4"
               style={{ color: "var(--color-text-secondary)" }}
             >
-              El Sindicato de Trabajadores Mineros de Chinalco Perú (SUTRAMCHP),
+              El Sindicato de Trabajadores Mineros de Chinalco Perú (SUTRAMCH),
               también conocido como SUTRAMCHPERU, es el sindicato minero de
               Chinalco que nació de la necesidad de proteger y promover los
               derechos laborales de los trabajadores de la industria minera en
@@ -527,7 +527,7 @@ function AboutSection() {
             <div className="rounded-2xl overflow-hidden shadow-lg">
               <img
                 src="/images/toromocho.png"
-                alt="Trabajadores mineros de SUTRAMCHP"
+                alt="Trabajadores mineros de SUTRAMCH"
                 className="w-full h-auto object-cover"
               />
             </div>
@@ -807,7 +807,7 @@ function ContactSection() {
                     className="text-sm"
                     style={{ color: "var(--color-text-secondary)" }}
                   >
-                    Av. Minera 1234, Morococha
+                    Av. Minería s/n, Morococha
                     <br />
                     Yauli, Junín, Perú
                   </p>
@@ -937,11 +937,11 @@ function ContactSection() {
 // ── FAQ Section (AEO: respuestas directas para motores de IA) ──
 const FAQ_DATA = [
   {
-    q: "¿Qué es SUTRAMCHP?",
-    a: "SUTRAMCHP (SUTRAMCHPERU) es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado el 17 de diciembre de 2014. Representa y defiende los derechos laborales de más de 2,500 trabajadores mineros en la mina Toromocho, Morococha, Junín.",
+    q: "¿Qué es SUTRAMCH?",
+    a: "SUTRAMCH (SUTRAMCHPERU) es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado el 17 de diciembre de 2014. Representa y defiende los derechos laborales de más de 2,500 trabajadores mineros en la mina Toromocho, Morococha, Junín.",
   },
   {
-    q: "¿Cómo puedo afiliarme a SUTRAMCHP?",
+    q: "¿Cómo puedo afiliarme a SUTRAMCH?",
     a: "Para afiliarse debes ser trabajador de Minera Chinalco Perú. Contáctanos al +51 914 130 326 o escribe a secretaria_sindicato@sutramchp.pe con tu solicitud de afiliación.",
   },
   {
@@ -949,11 +949,11 @@ const FAQ_DATA = [
     a: "Los afiliados acceden a negociación colectiva, defensa laboral, seguro médico familiar, bono educativo, programa de vivienda, Centro de Salud propio 24/7, capacitaciones y actividades culturales.",
   },
   {
-    q: "¿Dónde está ubicada la oficina de SUTRAMCHP?",
-    a: "Av. Minera 1234, Morococha, Yauli, Junín, Perú. Atención: lunes a viernes 8:00 am–5:00 pm | sábados 8:00 am–12:00 pm.",
+    q: "¿Dónde está ubicada la oficina de SUTRAMCH?",
+    a: "Av. Minería s/n, Morococha, Yauli, Junín - Perú. Atención: lunes a viernes 8:00 am–5:00 pm | sábados 8:00 am–12:00 pm.",
   },
   {
-    q: "¿En qué mina trabajan los afiliados de SUTRAMCHP?",
+    q: "¿En qué mina trabajan los afiliados de SUTRAMCH?",
     a: "En la mina Toromocho, operada por Minera Chinalco Perú (subsidiaria de Aluminum Corporation of China). Es uno de los yacimientos de cobre más grandes del mundo, en Morococha, Junín.",
   },
 ];

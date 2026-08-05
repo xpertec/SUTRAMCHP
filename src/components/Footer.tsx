@@ -30,7 +30,7 @@ export default function Footer() {
                 className="h-10 w-10 object-cover rounded-full border-2 border-white/20"
               />
               <span className="text-white font-heading font-bold text-lg">
-                SUTRAMCHP
+                SUTRAMCH
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-4">
@@ -86,7 +86,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-white/60 text-sm">
                 <MapPin size={16} className="mt-0.5 shrink-0" />
-                <span>Av. Minera 1234, Morococha, Yauli, Junín, Perú</span>
+                <span>Av. Minera s/n, Morococha, Yauli, Junín, Perú</span>
               </li>
               <li className="flex items-center gap-2.5 text-white/60 text-sm">
                 <Phone size={16} className="shrink-0" />
@@ -134,7 +134,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
           <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} SUTRAMCHP. Todos los derechos reservados.
+            © {new Date().getFullYear()} SUTRAMCH - XPERT TEC. Todos los derechos reservados.
           </p>
           <p className="text-white/40 text-xs">
             Diseñado con compromiso para los trabajadores mineros

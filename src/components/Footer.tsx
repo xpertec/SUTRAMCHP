@@ -26,7 +26,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <img
                 src="/images/logo.jpeg"
-                alt="SUTRAMCHP"
+                alt="SUTRAMCH"
                 className="h-10 w-10 object-cover rounded-full border-2 border-white/20"
               />
               <span className="text-white font-heading font-bold text-lg">
@@ -34,9 +34,10 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-4">
-              Sindicato de Trabajadores Mineros de Chinalco Perú. Defendiendo los
-              derechos laborales y construyendo un futuro mejor para nuestros
-              agremiados desde 2003.
+              Sindicato de Trabajadores Mineros de Chinalco Perú (SUTRAMCHPERU).
+              Defendiendo los derechos laborales del sindicato minero de Chinalco
+              y construyendo un futuro mejor para nuestros agremiados desde el 17
+              de diciembre de 2014.
             </p>
           </div>
 
@@ -86,7 +87,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5 text-white/60 text-sm">
                 <MapPin size={16} className="mt-0.5 shrink-0" />
-                <span>Av. Minera s/n, Morococha, Yauli, Junín, Perú</span>
+                <span>Av. Minería s/n, Morococha, Yauli, Junín - Perú</span>
               </li>
               <li className="flex items-center gap-2.5 text-white/60 text-sm">
                 <Phone size={16} className="shrink-0" />

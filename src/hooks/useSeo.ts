@@ -16,7 +16,7 @@ const SITE_NAME = "SUTRAMCHP";
 const SITE_URL = "https://sutramchperu.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
 const DEFAULT_DESCRIPTION =
-  "SUTRAMCHP es el Sindicato Unificado de Trabajadores de Minera Chinalco Perú, fundado en 2003 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
+  "SUTRAMCHP (Sindicato Unificado de Trabajadores de Minera Chinalco Perú) es el sindicato minero de Chinalco Perú, fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
 
 export interface SeoProps {
   /** Título de la página (sin el nombre del sitio). Ej: "Nuestra Historia" */
@@ -31,6 +31,8 @@ export interface SeoProps {
   ogType?: "website" | "article";
   /** JSON-LD structured data object(s) para Schema.org */
   schema?: object | object[];
+  /** Palabras clave SEO, separadas por coma. Ej: "sindicato chinalco, SUTRAMCH" */
+  keywords?: string;
   /** Si true, noindex para bots */
   noIndex?: boolean;
 }
@@ -77,6 +79,7 @@ export function useSeo({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   schema,
+  keywords,
   noIndex = false,
 }: SeoProps = {}) {
   useEffect(() => {
@@ -91,6 +94,11 @@ export function useSeo({
 
     // Description
     setMeta('meta[name="description"]', "name", "description", description);
+
+    // Keywords
+    if (keywords) {
+      setMeta('meta[name="keywords"]', "name", "keywords", keywords);
+    }
 
     // Robots
     setMeta(
@@ -126,5 +134,5 @@ export function useSeo({
       // Limpiar JSON-LD al cambiar de página
       removeSchema("schema-org-page");
     };
-  }, [title, description, canonical, ogImage, ogType, schema, noIndex]);
+  }, [title, description, canonical, ogImage, ogType, schema, keywords, noIndex]);
 }

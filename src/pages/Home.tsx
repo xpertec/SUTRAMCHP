@@ -1079,13 +1079,13 @@ function FaqSection() {
 
 // ── Aliados y enlaces de interés (carrusel infinito de logos) ──
 const ALLIES = [
-  { name: "IESI - Instituto Sociolaboral y Ambiental", img: "/images/aliados/iesi.png" },
-  { name: "EsSalud", img: "/images/aliados/essalud.png" },
-  { name: "SUNAFIL", img: "/images/aliados/sunafil.png" },
-  { name: "SERVIR - Autoridad Nacional del Servicio Civil", img: "/images/aliados/servir.png" },
-  { name: "Ministerio de Trabajo y Promoción del Empleo", img: "/images/aliados/mtpe.png" },
-  { name: "Federación Sindical Mundial", img: "/images/aliados/fsm.png" },
-  { name: "OIT - Organización Internacional del Trabajo", img: "/images/aliados/oit.png" },
+  { name: "IESI - Instituto Sociolaboral y Ambiental",      img: "/images/aliados/iesi.png",    href: "https://www.iesi.pe" },
+  { name: "EsSalud",                                        img: "/images/aliados/essalud.png", href: "https://www.essalud.gob.pe" },
+  { name: "SUNAFIL",                                        img: "/images/aliados/sunafil.png", href: "https://www.sunafil.gob.pe" },
+  { name: "SERVIR - Autoridad Nacional del Servicio Civil", img: "/images/aliados/servir.png",  href: "https://www.servir.gob.pe" },
+  { name: "Ministerio de Trabajo y Promoción del Empleo",  img: "/images/aliados/mtpe.png",    href: "https://www.gob.pe/mtpe" },
+  { name: "Federación Sindical Mundial",                   img: "/images/aliados/fsm.png",     href: "https://www.fsm.int" },
+  { name: "OIT - Organización Internacional del Trabajo",  img: "/images/aliados/oit.png",     href: "https://www.ilo.org/es" },
 ];
 
 const SUNAFIL_LINKS = [
@@ -1129,19 +1129,22 @@ function AlliesSection() {
       <div className="allies-marquee relative w-full">
         <div className="allies-marquee-track">
           {track.map((ally, i) => (
-            <div
+            <a
               key={`${ally.name}-${i}`}
-              className="allies-logo-card shrink-0 flex items-center justify-center rounded-xl bg-white border"
-              style={{ borderColor: "var(--color-surface-alt)" }}
+              href={ally.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="allies-logo-card shrink-0 flex items-center justify-center"
               title={ally.name}
+              aria-label={ally.name}
             >
               <img
                 src={ally.img}
                 alt={ally.name}
-                className="max-h-14 max-w-[120px] w-auto h-auto object-contain"
+                className="max-h-[70px] max-w-[150px] w-auto h-auto object-contain transition-opacity duration-200 hover:opacity-75"
                 loading="lazy"
               />
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -1183,9 +1186,10 @@ function AlliesSection() {
           animation-play-state: paused;
         }
         .allies-logo-card {
-          width: 160px;
-          height: 96px;
-          padding: 1rem;
+          width: 200px;
+          height: 120px;
+          padding: 0.5rem;
+          cursor: pointer;
         }
         @keyframes allies-scroll {
           from { transform: translateX(0); }

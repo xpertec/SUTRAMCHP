@@ -5,7 +5,7 @@ import { schemaTypes } from './schemas'
 
 export default defineConfig({
   name: 'default',
-  title: 'SUTRAMCHP CMS - Administración',
+  title: 'SUTRAMCH CMS - Administración',
 
   projectId: 't7kvp1j8',
   dataset: 'production',

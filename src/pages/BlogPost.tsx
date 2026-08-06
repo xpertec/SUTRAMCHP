@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Facebook, Twitter, MessageCircle, Home, ChevronRight, Clock } from "lucide-react";
+import { Calendar, Facebook, Twitter, MessageCircle, Home, ChevronRight, Clock } from "lucide-react";
 import { obtenerNoticiaPorSlug, getImagenUrl, contenidoToHtml } from "@/services/noticiasService";
 import type { Noticia } from "@/types/noticia";
 import { useSeo } from "@/hooks/useSeo";
@@ -53,15 +53,15 @@ export default function BlogPost() {
         url: postUrl,
         image: ogImage,
         datePublished: post.fecha ?? post._createdAt,
-        dateModified: post._updatedAt ?? post.fecha ?? post._createdAt,
+        dateModified: post.fecha ?? post._createdAt,
         author: {
           "@type": "Organization",
-          name: "SUTRAMCHP",
+          name: "SUTRAMCH",
           url: SITE_URL,
         },
         publisher: {
           "@type": "Organization",
-          name: "SUTRAMCHP",
+          name: "SUTRAMCH",
           url: SITE_URL,
           logo: {
             "@type": "ImageObject",
@@ -70,7 +70,7 @@ export default function BlogPost() {
         },
         isPartOf: {
           "@type": "Blog",
-          name: "Blog Sindical SUTRAMCHP",
+          name: "Blog Sindical SUTRAMCH",
           url: `${SITE_URL}/blog`,
         },
       }
@@ -78,7 +78,7 @@ export default function BlogPost() {
 
   useSeo({
     title: post?.titulo,
-    description: extracto || "Noticias y novedades del Sindicato SUTRAMCHP, los trabajadores mineros de Chinalco Perú.",
+    description: extracto || "Noticias y novedades del Sindicato SUTRAMCH, los trabajadores mineros de Chinalco Perú.",
     canonical: postUrl,
     ogImage,
     ogType: "article",

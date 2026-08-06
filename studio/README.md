@@ -1,6 +1,6 @@
-# Sanity Studio - Gestor de Contenido SUTRAMCHP
+# Sanity Studio - Gestor de Contenido SUTRAMCH
 
-Este directorio contiene las definiciones de esquemas para **Sanity Studio** correspondiente a las secciones de **Noticias** y **Normativa Laboral** de la web SUTRAMCHP.
+Este directorio contiene las definiciones de esquemas para **Sanity Studio** correspondiente a las secciones de **Noticias** y **Normativa Laboral** de la web SUTRAMCH.
 
 ## 🛠️ Cómo desplegar / administrar esquemas
 

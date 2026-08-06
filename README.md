@@ -1,6 +1,6 @@
-# SUTRAMCHP
+# SUTRAMCH
 
-Sitio web de SUTRAMCHP. Frontend estático (React + Vite) + Sanity.io como CMS
+Sitio web de SUTRAMCH. Frontend estático (React + Vite) + Sanity.io como CMS
 headless para noticias/blog y normativa laboral.
 
 No hay backend Node.js: el sitio se compila a archivos estáticos y el

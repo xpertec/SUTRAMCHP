@@ -11,6 +11,24 @@ import {
 import { useSeo } from "@/hooks/useSeo";
 
 
+const CONTACT_EMAIL = "secretaria_sindicato@sutramchperu.com";
+
+function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const nombre = (form.elements.namedItem("nombre") as HTMLInputElement)?.value || "";
+  const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+  const telefono = (form.elements.namedItem("telefono") as HTMLInputElement)?.value || "";
+  const asunto = (form.elements.namedItem("asunto") as HTMLSelectElement)?.value || "";
+  const mensaje = (form.elements.namedItem("mensaje") as HTMLTextAreaElement)?.value || "";
+
+  const subject = encodeURIComponent(`[SUTRAMCH Web] ${asunto || "Consulta"}`);
+  const body = encodeURIComponent(
+    `Nombre: ${nombre}\nEmail: ${email}\nTeléfono: ${telefono}\n\nMensaje:\n${mensaje}`
+  );
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
 export default function Contacto() {
   useSeo({
     title: "Contacto",
@@ -72,7 +90,7 @@ export default function Contacto() {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación SUTRAMCHP"
+          title="Ubicación SUTRAMCH"
         />
       </div>
 
@@ -94,7 +112,7 @@ export default function Contacto() {
               Envíanos un mensaje
             </h2>
 
-            <form className="space-y-4 sm:space-y-5">
+            <form className="space-y-4 sm:space-y-5" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label
@@ -105,7 +123,9 @@ export default function Contacto() {
                   </label>
                   <input
                     type="text"
+                    name="nombre"
                     placeholder="Tu nombre"
+                    aria-label="Nombre completo"
                     className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{ borderColor: "var(--color-surface-alt)" }}
                   />
@@ -119,7 +139,9 @@ export default function Contacto() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     placeholder="tu@email.com"
+                    aria-label="Correo electrónico"
                     className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{ borderColor: "var(--color-surface-alt)" }}
                   />
@@ -136,7 +158,9 @@ export default function Contacto() {
                   </label>
                   <input
                     type="tel"
+                    name="telefono"
                     placeholder="+51 914 130 326"
+                    aria-label="Teléfono"
                     className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{ borderColor: "var(--color-surface-alt)" }}
                   />
@@ -149,6 +173,8 @@ export default function Contacto() {
                     Asunto
                   </label>
                   <select
+                    name="asunto"
+                    aria-label="Asunto"
                     className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                     style={{
                       borderColor: "var(--color-surface-alt)",
@@ -172,7 +198,9 @@ export default function Contacto() {
                   Mensaje
                 </label>
                 <textarea
+                  name="mensaje"
                   placeholder="Escribe tu mensaje..."
+                  aria-label="Mensaje"
                   rows={5}
                   className="w-full px-4 py-3 rounded-lg border bg-white text-base md:text-sm focus:outline-none focus:border-[var(--color-primary)] transition-colors resize-none"
                   style={{ borderColor: "var(--color-surface-alt)" }}

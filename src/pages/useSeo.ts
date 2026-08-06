@@ -12,11 +12,11 @@
 
 import { useEffect } from "react";
 
-const SITE_NAME = "SUTRAMCHP";
+const SITE_NAME = "SUTRAMCH";
 const SITE_URL = "https://sutramchperu.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-image.jpg`;
 const DEFAULT_DESCRIPTION =
-  "SUTRAMCHP (Sindicato Unificado de Trabajadores de Minera Chinalco Perú) es el sindicato minero de Chinalco Perú, fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
+  "SUTRAMCH (Sindicato Unificado de Trabajadores de Minera Chinalco Perú) es el sindicato minero de Chinalco Perú, fundado el 17 de diciembre de 2014 para defender los derechos laborales de más de 2,500 trabajadores mineros en Toromocho, Junín, Perú.";
 
 export interface SeoProps {
   /** Título de la página (sin el nombre del sitio). Ej: "Nuestra Historia" */

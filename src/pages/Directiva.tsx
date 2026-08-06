@@ -1,4 +1,4 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useSeo } from "@/hooks/useSeo";
 
 
@@ -6,7 +6,6 @@ interface Miembro {
   cargo: string;
   nombre: string;
   correos: string[];
-  telefono: string;
 }
 
 const directiva: Miembro[] = [
@@ -31,17 +30,17 @@ const directiva: Miembro[] = [
     correos: ["secretario_organizacion@sutramchperu.com"],
   },
   {
-    cargo: "Secretaria de Defensa y Asuntos Laborales",
+    cargo: "Secretario de Defensa y Asuntos Laborales",
     nombre: "Pedro Juan Rojas León",
     correos: ["secretario_defensa@sutramchperu.com"],
   },
   {
-    cargo: "Secretaria de Defensa y Asuntos Laborales Adjunto",
+    cargo: "Secretario de Defensa y Asuntos Laborales Adjunto",
     nombre: "Tunshuruco Macle Chuquivilca Cordova",
     correos: ["secretario_defensa@sutramchperu.com"],
   },
   {
-    cargo: "Secretaria de Defensa y Asuntos Laborales Adjunto",
+    cargo: "Secretario de Defensa y Asuntos Laborales Adjunto",
     nombre: "Tuctu Ever Orlando Medina Montecinos",
     correos: ["secretario_defensa@sutramchperu.com"],
   },
@@ -150,14 +149,6 @@ function MiembroCard({ miembro }: { miembro: Miembro }) {
             <span className="truncate">{correo}</span>
           </a>
         ))}
-        <a
-          href={`tel:+51${miembro.telefono.replace(/\s+/g, "")}`}
-          className="flex items-center gap-2 text-xs sm:text-sm transition-colors hover:text-[var(--color-secondary)] py-0.5"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
-          <Phone size={15} className="shrink-0" />
-          {miembro.telefono}
-        </a>
       </div>
     </div>
   );
@@ -170,10 +161,9 @@ export default function Directiva() {
     name: m.nombre,
     jobTitle: m.cargo,
     email: m.correos[0],
-    telephone: `+51${m.telefono.replace(/\s+/g, "")}`,
     worksFor: {
       "@type": "Organization",
-      name: "SUTRAMCHP",
+      name: "SUTRAMCH",
       url: "https://sutramchperu.com",
     },
   }));
@@ -200,7 +190,7 @@ export default function Directiva() {
             className="text-xs font-medium tracking-wider uppercase mb-2 sm:mb-3"
             style={{ color: "var(--color-accent)" }}
           >
-            SUTRAMCHP
+            SUTRAMCH
           </p>
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4">
             Nuestra Directiva

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "INICIO", href: "/" },
@@ -45,12 +45,10 @@ function WhatsappIcon() {
 
 export default function Navigation() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     setIsMobileOpen(false);
-    setShowSearch(false);
   }, [location]);
 
   return (
@@ -111,7 +109,7 @@ export default function Navigation() {
             <div className="bg-white rounded-full p-1 sm:p-1.5 shadow-lg border-2 sm:border-4 border-white w-[76px] h-[76px] sm:w-[104px] sm:h-[104px] md:w-[146px] md:h-[146px] flex items-center justify-center -mt-[14px] sm:-mt-[26px] md:-mt-[47px] transition-transform duration-300 hover:scale-105">
               <img
                 src="/images/logo.jpeg"
-                alt="SUTRAMCHP"
+                alt="SUTRAMCH"
                 className="w-full h-full object-contain rounded-full"
               />
             </div>
@@ -140,15 +138,7 @@ export default function Navigation() {
               </Link>
             ))}
 
-            {/* Search button */}
-            <button
-              onClick={() => setShowSearch(!showSearch)}
-              className="p-1.5 rounded-full transition-colors hover:bg-gray-100"
-              style={{ color: "var(--color-primary)" }}
-              aria-label="Buscar"
-            >
-              <Search size={18} />
-            </button>
+
           </div>
 
           {/* Mobile hamburger */}
@@ -164,20 +154,6 @@ export default function Navigation() {
             )}
           </button>
         </nav>
-
-        {/* Search bar expandible (desktop) */}
-        {showSearch && (
-          <div className="border-t border-gray-100 bg-gray-50 px-6 py-3">
-            <div className="container-padding mx-auto">
-              <input
-                type="search"
-                placeholder="Buscar en el sitio..."
-                autoFocus
-                className="w-full max-w-lg border border-gray-300 rounded-full px-5 py-2 text-sm outline-none focus:border-[var(--color-primary)] transition-colors"
-              />
-            </div>
-          </div>
-        )}
       </header>
 
       {/* ── Mobile menu overlay ── */}

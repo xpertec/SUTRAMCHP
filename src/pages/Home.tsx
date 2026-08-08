@@ -16,7 +16,7 @@ const HOME_SCHEMA = [
     alternateName: [
       "SUTRAMCHPERU",
       "Sindicato Chinalco Perú",
-      "Sindicato Unificado de Trabajadores Minera Chinalco Perú",
+      "Sindicato Unificado de Trabajadores Mineros Chinalco Perú",
       "SUTRAMCHPERU.COM",
     ],
     url: "https://sutramchperu.com",
